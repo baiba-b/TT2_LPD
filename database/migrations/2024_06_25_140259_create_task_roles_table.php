@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('task_user', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('task_id')->constrained()->onDelete('cascade');
-            $table->foreignId('role_id')->constrained('task_roles')->onDelete('cascade');
+        Schema::create('task_roles', function (Blueprint $table) {
+            $table->id();
+            $table->string('role_name', 100);
+            $table->boolean('read')->default(false);
+            $table->boolean('write')->default(false);
+            $table->boolean('update')->default(false);
+            $table->boolean('notify')->default(false);
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('task_user');
+        Schema::dropIfExists('task_roles');
     }
 };

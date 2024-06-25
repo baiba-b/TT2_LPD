@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('project_roles', function (Blueprint $table) {
             $table->id();
-            $table->string('type',50);
-            $table->foreignId('project_id')->constrained()->onDelete('cascade');
-            $table->foreignId('task_id')->constrained()->onDelete('cascade');
+            $table->string('name', 50);
+            $table->boolean('read')->default(false);
+            $table->boolean('write')->default(false);
+            $table->boolean('mark_complete')->default(false);
+            $table->boolean('update')->default(false);
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('project_roles');
     }
 };

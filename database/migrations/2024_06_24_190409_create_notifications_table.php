@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('content', 50);
             $table->timestamp('read_at');
             $table->timestamp('received_at');
-            $table->foreignId('sender_id')->constrained('users')->onDelete('cascade'); 
+            $table->foreignId('sender_id')->constrained('users')->onDelete('cascade')->nullable(); 
             $table->timestamps();
         });
     }
