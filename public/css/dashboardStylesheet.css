@@ -1,0 +1,38 @@
+* {
+    font-family: 'Arial', sans-serif;
+}
+body {
+    margin: 0;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;        
+    justify-content: center; 
+}
+
+li a {
+    display: block;
+    text-align: center;
+    padding: 14px 26px;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(37, 36, 36);
+    letter-spacing: 0.5px;
+}
+
+li a:hover:not(.active) {
+    background-color: #bfb9b9;
+    color: white;
+}
+
+.active {
+    background-color: #333cbb;
+    color: white;
+}
