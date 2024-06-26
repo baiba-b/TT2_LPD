@@ -129,7 +129,7 @@ li a:hover:not(.active) {
     align-items: center; 
     justify-content: center;
     cursor: pointer; 
-    gap: 0.5vh; 
+    gap: 1vh; 
     text-decoration: none;
 }
 
