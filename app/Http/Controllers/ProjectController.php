@@ -13,7 +13,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all()->sortBy('due_date');;
+        $projects = Project::orderByRaw('due_date IS NULL, due_date ASC')->get();
         $projectsCount =  $projects->count();
         $now = Carbon::now();
         $missedDeadlinesCount = $projects->where('due_date', '<', $now)->count();
@@ -31,7 +31,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projectCreate');
+        $projects = Project::all();
+        return view('projectCreate', ['projects' => $projects]);
     }
 
     /**
@@ -39,7 +40,20 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:100',
+            'description' => 'nullable|string',
+            'due_date' => 'nullable|date',
+            'estimated_workload' => 'required|integer|min:0',
+        ]);
+
+        $project = new Project();
+        $project->name = $request->input('name');
+        $project->description = $request->input('description');
+        $project->due_date = $request->input('due_date');
+        $project->estimated_workload = $request->input('estimated_workload');
+        $project->save();
+        return redirect()->route('projects.index')->with('success', 'Project created successfully.');
     }
 
     /**

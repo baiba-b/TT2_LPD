@@ -21,8 +21,8 @@ class ProjectFactory extends Factory
           'name' => $this->faker->sentence(3),
             'description' => $this->faker->paragraph,
             'due_date' => $this->faker->dateTimeBetween('now', '+1 year'),
-            'invested_time' => $this->faker->time($format = 'H:i:s', $max = 'now'),
-            'estimated_workload' => $this->faker->time($format = 'H:i:s', $max = 'now'),
+           'invested_time' => $this->faker->numberBetween(0, 1600), // Total minutes
+            'estimated_workload' => $this->faker->numberBetween(0, 1600), // Total minutes
         ];
     }
        /**
