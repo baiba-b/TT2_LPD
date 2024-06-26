@@ -140,6 +140,13 @@ li a:hover:not(.active) {
 }
 
 .buttonView{
+    display: block;
+    text-align: center;
+    padding: 14px 26px;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(37, 36, 36);
     margin-top: 3%;
     font-size: 1em;
     border: none;
@@ -153,3 +160,15 @@ li a:hover:not(.active) {
     text-decoration: none;
     
 }
+
+
+.circle-button {
+    display: block;
+    text-align: center;
+    padding: 14px 26px;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    margin-right: 15px; /* Adjust the margin as needed */
+}
+.material-icons {  transform: scale(1.5); }

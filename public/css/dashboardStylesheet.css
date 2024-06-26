@@ -40,3 +40,14 @@ li a:hover:not(.active) {
     background-color: #333cbb;
     color: white;
 }
+
+.circle-button {
+    display: block;
+    text-align: center;
+    padding: 14px 26px;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    margin-right: 15px; /* Adjust the margin as needed */
+}
+.material-icons {  transform: scale(1.5); }

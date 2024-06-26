@@ -10,11 +10,16 @@
 <body>
     <nav>
         <ul>
+            <li><a href="{{ url('/profile') }}" class="circle-button">
+                <i class="material-icons">account_circle</i>
+            </a></li>
             <li><a href="{{ route('dashboard') }}">Home</a></li>
             <li><a href="{{ route('connections.index') }}">Connections</a></li>
             <li><a class="active" href="{{ route('projects.index') }}">Projects</a></li>
             <li><a href="{{ route('tasks.index') }}">Tasks</a></li>
             <li><a href="{{url('/Timeline')}}">Timeline</a></li>
+            
+            
         </ul>
     </nav>
     <main>
@@ -34,26 +39,27 @@
                    $remainingMinutes, $remainingMinutes == 1 ? '' : 's');
 }
     @endphp
-        @php
-        $now = new \DateTime();
-        $upcomingProjectsCount = 0;
-        $missedDeadlinesCount = 0;
-        @endphp
-        @foreach ($projects as $project)
-        @php
-        $deadline = $project->due_date ? new \DateTime($project->due_date) : null;
-        if ($deadline) {
-            $interval = $now->diff($deadline);
-            $daysUntilDeadline = (int)$interval->format('%R%a');
 
-            if ($daysUntilDeadline < 0) {
-                $missedDeadlinesCount++;
-            } elseif ($daysUntilDeadline <= 7) {
-                $upcomingProjectsCount++;
-            }
+    @php
+    $now = new \DateTime();
+    $upcomingProjectsCount = 0;
+    $missedDeadlinesCount = 0;
+    @endphp
+    @foreach ($projects as $project)
+    @php
+    $deadline = $project->due_date ? new \DateTime($project->due_date) : null;
+    if ($deadline) {
+        $interval = $now->diff($deadline);
+        $daysUntilDeadline = (int)$interval->format('%R%a');
+
+        if ($daysUntilDeadline < 0) {
+            $missedDeadlinesCount++;
+        } elseif ($daysUntilDeadline <= 7) {
+            $upcomingProjectsCount++;
         }
-        @endphp
-        @endforeach
+    }
+    @endphp
+    @endforeach
         <h1>Projects</h1>
         <h2>Upcoming: {{ $upcomingProjectsCount }}</h2>
         <h2>Missed deadlines: {{ $missedDeadlinesCount }}</h2>
