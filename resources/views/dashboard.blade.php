@@ -1,21 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="\css\dashboardStylesheet.css">
-    <title>Dashboard</title>
-</head>
-<body>
-<!-- add routes in href, see welcome blade -->
-<ul>
-    <li><a class="active" href="{{route('dashboard')}}">Home</a></li>
-    <li><a href="{{url('/Teams')}}">Teams</a></li> 
-    <li><a href="{{url('/Connections')}}">Connections</a></li>
-    <li><a href="{{route('projects.index')}}">Projects</a></li>
-    <li><a href="{{url('/Tasks')}}">Tasks</a></li>
-    <li><a href="{{url('/Timeline')}}">Timeline</a></li>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
 
-</ul> 
-</body>
-</html>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    {{ __("You're logged in!") }}
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
