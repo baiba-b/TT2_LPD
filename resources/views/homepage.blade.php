@@ -10,14 +10,14 @@
 
 <body>
     <div class="split" id="main">
-        <h1>Welcome to <span style="color:#1a2185;">Oplan!</span></h1>
+        <h1>@lang('messages.greet')<span style="color:#1a2185;">Oplan!</span></h1>
         <div style="display:flex;flex-direction:row; min-width:20%">
             <form>
                 <a class="button" href="{{ route('login') }}">@lang('messages.login')</a>
                 <a class="button" href="{{ route('register') }}">@lang('messages.register')</a>
             </form>
             <div class="dropdown">
-                <button class="dropbtn">Language</button>
+                <button class="dropbtn">@lang('messages.lang')</button>
                 <div class="dropdown-content">
                     <a href="locale/en">English</a>
                     <a href="locale/lv">Latviski</a>
@@ -29,10 +29,10 @@
     <br>
     <div class="split">
         <div id="column" class="txtDiv">
-            <h2>What is Oplan?</h2>
-            <p id="intro">Oplan is an online platform designed to coordinate and simplify team collaboration and project management. Our mission is to empower teams of all sizes to work together more efficiently, creating a productive and engaging environment.<br>
+            <h2>@lang('messages.question')Oplan?</h2>
+            <p id="intro">@lang('messages.intro')<br>
                 <br>
-                <em>Created and designed by Baiba Bērziņa and Ēriks Krallišs.</em>
+                <em>@lang('messages.devs')</em>
             </p>
         </div>
         <div id="column" class="imgDiv">

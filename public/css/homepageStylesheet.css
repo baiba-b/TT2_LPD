@@ -39,6 +39,7 @@ body {
 }
 .txtDiv
 {
+    max-width: 50%;
     align-self: baseline;
     align-items: baseline;
 }
@@ -64,7 +65,7 @@ body {
     background-color: #1a2185;
 }
 #intro {
-    max-width: 200rem;
+    max-width: 100rem;
     text-align: left;
     font-size: 2em;
     text-wrap:wrap;
