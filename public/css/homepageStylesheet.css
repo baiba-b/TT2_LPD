@@ -11,6 +11,7 @@ body {
     height: 100vh;
     background: linear-gradient(-135deg, #a6bbff, #2f1e77);
     color: #fff;
+    
 }
 .split {
     display: flex;
@@ -40,8 +41,6 @@ body {
 {
     align-self: baseline;
     align-items: baseline;
-
-
 }
 button {
     background-color: #333cbb;
@@ -77,8 +76,18 @@ h1 {
 h2 {
     font-size: 3em;
     font-weight: 600;
+    padding-bottom: 2%;
+    color: #1a2185;
 
 }
 p{
     font-weight: 300;
+    
+}
+#intro
+{
+    text-align: justify;
+}
+.signoff{
+    font-style: italic;
 }

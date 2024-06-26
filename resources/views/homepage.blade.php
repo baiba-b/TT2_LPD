@@ -10,7 +10,7 @@
 
 <body>
     <div class="split" id="main">
-        <h1>Welcome to Oplan!</h1>
+        <h1>Welcome to <span style="color:#1a2185;">Oplan!</span></h1>
         <form>
             <button>Login</button>
             <button>Register</button>
@@ -22,7 +22,7 @@
             <h2>What is Oplan?</h2>
             <p id="intro">Oplan is an online platform designed to coordinate and simplify team collaboration and project management. Our mission is to empower teams of all sizes to work together more efficiently, creating a productive and engaging environment.<br>
                 <br>
-                Created and designed by Baiba Bērziņa and Ēriks Krallišs.
+                <em>Created and designed by Baiba Bērziņa and Ēriks Krallišs.</em>
             </p>
         </div>
         <div id="column" class ="imgDiv">
