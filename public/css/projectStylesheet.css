@@ -105,11 +105,50 @@ li a:hover:not(.active) {
     background-color: #B0E298; 
 }
 .no-deadline {
-    background-color: #FFFF; 
+    background-color: #efe1e1; 
 }
 
 .project_days_left{
     margin-top: 5px;
     font-style: italic;
     font-weight: bold;
+}
+.button {
+    margin: auto;
+    font-size: 1em;
+    border: none;
+    outline: none;
+    padding: 1vh 2vh; 
+    border-radius: 1vh;
+    background-color: #a63bf2;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color: white;
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center;
+    cursor: pointer; 
+    gap: 0.5vh; 
+    text-decoration: none;
+}
+
+.material-icons {
+    font-size: 1.2em; 
+    vertical-align: middle; 
+    line-height: 1;
+}
+
+.buttonView{
+    margin-top: 10%;
+    font-size: 1em;
+    border: none;
+    outline: none;
+    padding: 1vh 2vh; 
+    border-radius: 1vh;
+    background-color: #FFFF;
+    color: black;
+    display: inline-flex; 
+    cursor: pointer; 
+    gap: 0.5vh; 
+    text-decoration: none;
+    
 }
