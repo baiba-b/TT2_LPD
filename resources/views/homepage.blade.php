@@ -21,10 +21,11 @@
         <div id="column">
             <h2>What is Oplan?</h2>
             <p id="intro">Oplan is an online platform designed to coordinate and simplify team collaboration and project management. Our mission is to empower teams of all sizes to work together more efficiently, creating a productive and engaging environment.<br>
-<br>
-Created and designed by Baiba Bērziņa and Ēriks Krallišs.</p>
+                <br>
+                Created and designed by Baiba Bērziņa and Ēriks Krallišs.
+            </p>
         </div>
-        <a href="https://www.pexels.com/photo/people-near-table-3184639/" target="_blank" title="People near table by fauxels"><img src="\images\people-near-table.jpg" alt="Picture of people collaborating" height="300"></a>
+        <a href="https://www.pexels.com/photo/people-near-table-3184639/" target="_blank" title="People near table by fauxels"><img src="\images\people-near-table.jpg" alt="Picture of people collaborating"></a>
     </div>
 </body>
 

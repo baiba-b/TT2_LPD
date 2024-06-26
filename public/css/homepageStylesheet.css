@@ -1,3 +1,11 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: linear-gradient(-135deg, #a6bbff, #2f1e77);
+    color: #fff;
+}
 .split {
     display: flex;
     justify-content: space-between;
@@ -24,17 +32,20 @@ button {
 button:hover {
     background-color: #1a2185;
 }
-form {
-    margin-top: 20px;
-}
 #intro {
-    max-width: 600px;
+    max-width: 200rem;
     text-align: left;
+    font-size: 2em;
+    text-wrap:wrap;
     
 }
 img {
-    margin-top: 20px;
-    display: block;
-    max-width: 100%;
+    max-width: 35%;
     height: auto;
+}
+h1 {
+    font-size: 4em;
+}
+h2 {
+    font-size: 3em;
 }
