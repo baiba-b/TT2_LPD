@@ -15,6 +15,14 @@
         <a class="button" href="{{ route('login') }}">Login</a>
         <a class="button" href="{{ route('register') }}">Register</a>
         </form>
+        <div class="dropdown">
+        <button class="dropbtn">Dropdown</button>
+        <div class="dropdown-content">
+            <a href="#link1">Link 1</a>
+            <a href="#link2">Link 2</a>
+            <a href="#link3">Link 3</a>
+        </div>
+    </div>
     </div>
     <br>
     <div class="split">
