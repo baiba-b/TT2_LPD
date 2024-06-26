@@ -34,8 +34,9 @@
                 $now = new \DateTime();
                 $interval = $now->diff($deadline);
                 $daysUntilDeadline = (int)$interval->format('%R%a');
-
-                if ($daysUntilDeadline < 0) {
+                
+                if($deadline==NULL)  $class = 'no-deadline';
+                else if ($daysUntilDeadline < 0) {
                     $class = 'deadline-past';
                 } elseif ($daysUntilDeadline <= 7) {
                     $class = 'deadline-soon';

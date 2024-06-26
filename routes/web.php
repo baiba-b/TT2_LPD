@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::redirect('/', '/hompeage');
+Route::redirect('/', '/homepage');
 
 Route::get('/homepage', function () {
     return view('homepage');
