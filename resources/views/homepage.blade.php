@@ -26,7 +26,7 @@
             </p>
         </div>
         <div id="column" class ="imgDiv">
-        <a src="https://www.pexels.com/photo/people-near-table-3184639/" target="_blank" title="People near table by fauxels"><img src="\images\people-near-table.jpg" alt="Picture of people collaborating"></a>
+        <a href="https://www.pexels.com/photo/people-near-table-3184639/" target="_blank" title="People near table by fauxels"><img src="\images\people-near-table.jpg" alt="Picture of people collaborating"></a>
         </div>
     </div>
 </body>
