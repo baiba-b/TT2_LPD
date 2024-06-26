@@ -54,6 +54,7 @@
                     <p class="project_text">{{ $project->name }}</p>
                     <p class="project_due_date">{{ $project->due_date }}</p>
                     <p class="project_days_left">{{ $daysUntilDeadline }} days left</p>
+                    <p class="project_text">workload: {{ $project->estimated_workload }}</p>
                     <a class="buttonView" href="{{ route('projects.show', ['project' => $project->id]) }}">
                     View Project</a>
             </div>

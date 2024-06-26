@@ -21,7 +21,7 @@ class ProjectController extends Controller
         return view('projects', [
             'projects' => $projects,
             'projectsCount' => $projectsCount,
-            'missedDeadlinesCount' => $missedDeadlinesCount
+            'missedDeadlinesCount' => $missedDeadlinesCount,
         ]);
         
     }

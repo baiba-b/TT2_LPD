@@ -82,7 +82,7 @@ li a:hover:not(.active) {
     margin:auto;
     margin-top: 2%;
     padding: 5vh;
-    height: 15vh;
+    height: auto;
     width:30vh;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -91,6 +91,7 @@ li a:hover:not(.active) {
     justify-content: center; 
     text-align: center;
     word-wrap: break-word; 
+    
 }
 
 .deadline-soon {
@@ -110,6 +111,7 @@ li a:hover:not(.active) {
 
 .project_days_left{
     margin-top: 5px;
+    margin-bottom: 5px;
     font-style: italic;
     font-weight: bold;
 }
@@ -138,7 +140,7 @@ li a:hover:not(.active) {
 }
 
 .buttonView{
-    margin-top: 10%;
+    margin-top: 3%;
     font-size: 1em;
     border: none;
     outline: none;

@@ -18,9 +18,11 @@ class ProjectFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->sentence(3),
+          'name' => $this->faker->sentence(3),
             'description' => $this->faker->paragraph,
             'due_date' => $this->faker->dateTimeBetween('now', '+1 year'),
+            'invested_time' => $this->faker->time($format = 'H:i:s', $max = 'now'),
+            'estimated_workload' => $this->faker->time($format = 'H:i:s', $max = 'now'),
         ];
     }
        /**
