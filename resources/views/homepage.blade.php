@@ -12,8 +12,8 @@
     <div class="split" id="main">
         <h1>Welcome to <span style="color:#1a2185;">Oplan!</span></h1>
         <form>
-            <button>Login</button>
-            <button>Register</button>
+        <a class="button" href="{{ route('login') }}">Login</a>
+        <a class="button" href="{{ route('register') }}">Register</a>
         </form>
     </div>
     <br>

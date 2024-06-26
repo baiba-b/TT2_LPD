@@ -9,7 +9,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    background: linear-gradient(-135deg, #a6bbff, #2f1e77);
+    background: linear-gradient(150deg, #72a9e9, #2a275f);
     color: #fff;
     
 }
@@ -42,20 +42,25 @@ body {
     align-self: baseline;
     align-items: baseline;
 }
-button {
-    background-color: #333cbb;
+.button {
+    margin: auto;
+    font-size: 1em;
     border: none;
+    outline: none;
+    padding: 1vh 2vh; 
+    border-radius: 1vh;
+    background-color: #333cbb;
     color: white;
-    padding: 15px 32px;
-    text-align: center;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 12px;
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center;
+    cursor: pointer; 
+    text-decoration: none;
     box-shadow: 2px 4px #202566;
     transition: background-color 0.3s ease;
+    margin: 4px 2px;
 }
-button:hover {
+.button:hover {
     background-color: #1a2185;
 }
 #intro {
