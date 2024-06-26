@@ -31,7 +31,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('projectCreate');
     }
 
     /**
@@ -47,7 +47,7 @@ class ProjectController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('projectShow');
     }
 
     /**
