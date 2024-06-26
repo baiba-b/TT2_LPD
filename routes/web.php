@@ -16,11 +16,12 @@ Route::get('/', function () {
 });
 
 Route::redirect('/', '/homepage');
-
+Route::redirect('/home', '/homepage');
 Route::get('/homepage', function () {
     return view('homepage');
 });
 
+Route::redirect('/dash', '/dashboard');
 // Dashboard route
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 

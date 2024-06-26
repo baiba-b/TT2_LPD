@@ -1,0 +1,40 @@
+.split {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+#column {
+    display: flex;
+    flex-direction: column;
+}
+button {
+    background-color: #333cbb;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 2px 4px #202566;
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: #1a2185;
+}
+form {
+    margin-top: 20px;
+}
+#intro {
+    max-width: 600px;
+    text-align: left;
+    
+}
+img {
+    margin-top: 20px;
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
