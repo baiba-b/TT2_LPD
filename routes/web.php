@@ -11,6 +11,7 @@ use App\Http\Controllers\ProjectRoleController;
 use App\Http\Controllers\TaskRoleController;
 use App\Http\Controllers\ConnectionController;
 use App\Http\Controllers\CommunicationsController;
+use App\Http\Controllers\LocaleController;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -34,7 +35,7 @@ Route::redirect('/home', '/homepage');
 Route::get('/homepage', function () {
     return view('homepage');
 });
-
+Route::get('locale/{lang}',[LocaleController::class, 'setLocale']);
 // Resource routes
 Route::resource('users', UserController::class);
 Route::resource('tasks', TaskController::class);

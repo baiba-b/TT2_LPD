@@ -94,21 +94,25 @@ p{
 }
 
 .dropdown {
+    margin-left:2%;
     position: relative;
     display: inline-block;
 }
 
 .dropbtn {
-    background-color: #4CAF50;
+    background-color: #435ac0;
     color: white;
     padding: 16px;
     font-size: 16px;
+    border-radius: 1vh;
     border: none;
     cursor: pointer;
+    box-shadow: 2px 4px #202566;
+    transition: background-color 0.3s ease;
 }
 
 .dropbtn:hover, .dropbtn:focus {
-    background-color: #3e8e41;
+    background-color: #273d9c;
 }
 
 .dropdown-content {
