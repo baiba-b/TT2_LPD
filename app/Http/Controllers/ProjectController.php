@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\User;
+
 use Carbon\Carbon;
 
 class ProjectController extends Controller
@@ -59,10 +61,12 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        return view('projectShow');
-    }
+  public function show($id)
+{
+    $project = Project::find($id);
+    $creator = $project->creator;
+    return view('projectShow', compact('project', 'creator'));
+}
 
     /**
      * Show the form for editing the specified resource.
@@ -87,4 +91,21 @@ class ProjectController extends Controller
     {
         //
     }
+    public function addMember($id)
+    {
+        $project = Project::findOrFail($id);
+        $users = User::all(); // Get all users or filter as necessary
+
+        return view('projects.addMember', compact('project', 'users'));
+    }
+
+    public function storeMember(Request $request, $id)
+    {
+        $project = Project::findOrFail($id);
+        $user = User::findOrFail($request->user_id);
+        $project->users()->attach($user, ['role_id' => $request->role_id]);
+
+        return redirect()->route('projects.show', $project)->with('success', 'Member added successfully.');
+    }
+
 }

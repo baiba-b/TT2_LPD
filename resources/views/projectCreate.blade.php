@@ -20,6 +20,7 @@
     </script>
 </head>
 <body>
+    <h1>Create project</h1>
     <form action="{{ route('projects.store') }}" method="POST" onsubmit="calculateTotalMinutes()">
         @csrf
         <div>
