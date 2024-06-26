@@ -19,18 +19,32 @@
 </nav>
 <!-- add user name variable -->
 <main>
-    <h1>Projects</h1>
-    <h2>Completed: </h2>
-    <h2>In progress: </h2>
-    <h2>Not started: </h2>
-    <h2>Upcoming: </h2>
-    <h2>Total: </h2>
+@php
+        $now = new \DateTime();
+        $upcomingProjectsCount = 0;
+        $missedDeadlinesCount = 0;
+    @endphp
+    @foreach ($projects as $project)
+        @php
+            $deadline = new \DateTime($project->due_date);
+            $interval = $now->diff($deadline);
+            $daysUntilDeadline = (int)$interval->format('%R%a');
 
+          if ($daysUntilDeadline <= 7) {
+                $class = 'deadline-soon';
+                $upcomingProjectsCount++;
+            }
+        @endphp
+    @endforeach
+    <h1>Projects </h1>
+    <h2>Upcoming: {{ $upcomingProjectsCount}}</h2>
+    <h2>Missed deadlines:  {{ $missedDeadlinesCount }}</h2>
+    <h2>Total: {{$projectsCount}}</h2>
     <div class="projects-container">
         <!-- sets color of box depending on deadline, code needs fixing! -->
 @foreach ($projects as $project) 
             @php
-            $deadline = new \DateTime($project->due_date);
+                $deadline = new \DateTime($project->due_date);
                 $now = new \DateTime();
                 $interval = $now->diff($deadline);
                 $daysUntilDeadline = (int)$interval->format('%R%a');

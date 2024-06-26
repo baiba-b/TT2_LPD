@@ -1,11 +1,13 @@
 * {
     font-family: 'Arial', sans-serif;
 }
+
 body {
-    background-color: #F9F9F9;
+    background-color: #FAF9F6;
     margin: 0;
 }
 ul {
+    left:0;
     list-style-type: none;
     margin: 0;
     padding: 0;

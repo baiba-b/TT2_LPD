@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Project;
+use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
@@ -12,9 +13,15 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::all()->sortBy('due_date');;
+        $projectsCount =  $projects->count();
+        $now = Carbon::now();
+        $missedDeadlinesCount = $projects->where('due_date', '<', $now)->count();
+
         return view('projects', [
             'projects' => $projects,
+            'projectsCount' => $projectsCount,
+            'missedDeadlinesCount' => $missedDeadlinesCount
         ]);
         
     }
