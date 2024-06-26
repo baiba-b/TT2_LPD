@@ -29,7 +29,7 @@ Route::get('/', function () {
 });
 
 Route::redirect('/', '/homepage');
-
+Route::redirect('/dash', '/dashboard');
 Route::redirect('/home', '/homepage');
 Route::get('/homepage', function () {
     return view('homepage');
