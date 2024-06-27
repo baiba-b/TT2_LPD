@@ -80,7 +80,26 @@ class ProjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $project = Project::find($id);
+    
+        if (!$project) {
+            return redirect()->route('projects.index')->with('error', 'Project not found.');
+        }
+    
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'due_date' => 'required|date',
+            'estimated_workload' => 'required|integer|min:0',
+        ]);
+    
+        $project->name = $request->input('name');
+        $project->description = $request->input('description');
+        $project->due_date = $request->input('due_date');
+        $project->estimated_workload = $request->input('estimated_workload');
+        $project->save();
+    
+        return redirect()->route('projects.index');
     }
 
     /**

@@ -59,7 +59,8 @@ class TaskController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $task = Task::find($id);
+        return view('taskEdit', compact('task'));
     }
 
     /**
@@ -67,7 +68,26 @@ class TaskController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $task = Task::find($id);
+    
+        if (!$task) {
+            return redirect()->route('tasks.index')->with('error', 'Task not found.');
+        }
+    
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'due_date' => 'required|date',
+            'estimated_workload' => 'required|integer|min:0',
+        ]);
+    
+        $task->name = $request->input('name');
+        $task->description = $request->input('description');
+        $task->due_date = $request->input('due_date');
+        $task->estimated_workload = $request->input('estimated_workload');
+        $task->save();
+    
+        return redirect()->route('tasks.index');
     }
 
     /**

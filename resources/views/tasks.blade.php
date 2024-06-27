@@ -48,14 +48,14 @@
                                     </div>
                                 </div>
                             
-                                <label for="task-{{ $task->id }}">
-                                    <h2>{{ $task->name }}</h2>
-                                    <p>Estimated Workload: {{ intdiv($task->estimated_workload, 60) }} hours {{ $task->estimated_workload % 60 }} minutes</p>
-                                    <p>Due Date: {{ $task->due_date }}</p>
-                                    <p>Project: {{ $task->project->name ?? 'No project assigned'  }}</p>
-                                    <a class="buttonView" href="{{ route('tasks.show', ['task' => $task->id]) }}">View Task</a>
-                                </label>
-                            </div>
+                            <label for="task-{{ $task->id }}">
+                                <h2>{{ $task->name }}</h2>
+                                <p>Estimated Workload: {{ intdiv($task->estimated_workload, 60) }} hours {{ $task->estimated_workload % 60 }} minutes</p>
+                                <p>Due Date: {{ $task->due_date }}</p>
+                                <p>Project: {{ $task->project->name ?? 'No project assigned'  }}</p>
+                                <a class="buttonView" href="{{ route('tasks.show', ['task' => $task->id]) }}">View Task</a>
+                            </label>
+                        </div>
                         </div>
                     @endforeach
                 @else
