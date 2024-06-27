@@ -29,7 +29,9 @@
     color: rgb(0, 0, 0);
     padding: 1em 1.5em;
     text-decoration: none;
-    display: block;
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
 }
 
 .dropdown-content a:hover {
@@ -46,9 +48,13 @@
     background:none;
     width: 100%;
     text-align: left;
+    display: flex;
+    align-items: center;
 
 }
 #delete:hover,
 #delete:focus {
     background-color: #71717116;
 }
+.material-icons:not(#add):not(#deleteI){
+    padding: 10px;}

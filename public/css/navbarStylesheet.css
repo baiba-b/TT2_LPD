@@ -40,4 +40,23 @@ li a:hover:not(.active) {
     background-color: #333cbb;
     color: white;
 }
+#profile-info {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit; /* To inherit the color from the parent element */
+    padding:4%;
+    width: 100%;
+}
 
+.exception {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%; /* To make the image circular */
+    margin-right: 10px; /* Add some space between the picture and the name */
+}
+
+.profile-name {
+    font-weight: bold;
+    font-size: 16px; /* Adjust the font size as needed */
+}

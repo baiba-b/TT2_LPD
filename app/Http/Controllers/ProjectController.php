@@ -113,6 +113,15 @@ class ProjectController extends Controller
         Project::destroy($id);
         return redirect()->route('projects.index');
     }
+
+    public function showParticipants(string $id)
+    {
+        $project = Project::find($id);
+        $participants = $project->participants;
+
+        return view('projectsParticipants', compact('project', 'participants'));
+    }
+
     public function addMember($id)
     {
         $project = Project::findOrFail($id);

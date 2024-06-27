@@ -17,20 +17,23 @@
     function formatMinutes($minutes) {
     if ($minutes < 0) { return 'Invalid input: minutes cannot be negative' ; } $days=floor($minutes / 1440); $hours=floor(($minutes % 1440) / 60); $remainingMinutes=$minutes % 60; return sprintf('%d d %02d h %02d m', $days, $days==1 ? '' : 's' , $hours, $hours==1 ? '' : 's' , $remainingMinutes, $remainingMinutes==1 ? '' : 's' ); } @endphp <nav>
         <ul>
+
+            <li><a href="{{ route('dashboard') }}">Home</a></li>
+            <li><a href="{{ route('connections.index') }}">Connections</a></li>
+            <li><a class="active" href="{{ route('projects.index') }}">Projects</a></li>
+            <li><a href="{{ route('tasks.index') }}">Tasks</a></li>
+            <li><a href="{{url('/Timeline')}}">Timeline</a></li>
             <li>
-                <a href="{{ url('/profile') }}" class="exception">
+                <a href="{{ url('/profile') }}" id="profile-info">
                     @if(Auth::user()->profile_picture)
                     <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture" class="exception" style="width: 35px; height: 35px;">
                     @else
                     <img src="{{ asset('default_profile_picture.png') }}" alt="Default Profile Picture" class="exception" style="width: 35px; height: 35px;">
                     @endif
+                    <span class="profile-name">{{ Auth::user()->name }}</span>
                 </a>
             </li>
-            <li><a href="{{ route('dashboard') }}">Home</a></li>
-            <li><a href="{{ route('connections.index') }}">Connections</a></li>
-            <li><a class="active" href="{{ route('projects.index') }}">Projects</a></li>
-            <li><a href="{{ route('tasks.index') }}">Tasks</a></li>
-            <li><a href="{{ url('/Timeline') }}">Timeline</a></li>
+
         </ul>
         </nav>
         <main>
