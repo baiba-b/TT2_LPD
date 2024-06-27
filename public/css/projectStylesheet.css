@@ -138,5 +138,9 @@ h2{
 .material-icons
 {  margin-right:2px;  }
 
+.project_text {
+    max-width:100%;
+    overflow-wrap:break-word;
+}
 
   

@@ -201,3 +201,7 @@ h1 {
     transform: rotate(45deg);
     
 }
+h2 {
+    max-width:100%;
+    overflow-wrap:break-word;
+}

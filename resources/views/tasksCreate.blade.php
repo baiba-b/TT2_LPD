@@ -27,7 +27,7 @@
         @csrf
         <div>
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+            <input type="text" id="name" maxlength="50" name="name" required>
         </div>
         <div>
             <label for="description">Description:</label>

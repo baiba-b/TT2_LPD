@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class ConnectionController extends Controller
 {
     /**
@@ -11,7 +11,13 @@ class ConnectionController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+
+        // Get connections where the user is either user_id or connected_userID
+        $connections = $user->connections()->wherePivot('status', 'accepted')->get();
+        $connectedBy = $user->connectedTo()->wherePivot('status', 'accepted')->get();
+
+        return view('connections', compact('connections', 'connectedBy'));
     }
 
     /**
