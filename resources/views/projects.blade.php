@@ -67,7 +67,13 @@
                             <a  href="{{ route('projects.edit', $project->id) }}">
                                 <i class="material-icons" style="font-size: 1.1em;">edit</i>  Edit
                             </a>
-                            <a href="#">Link 2</a>
+                            <form method="POST" action="{{ route('projects.destroy', $project->id) }}" >
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="dropbtn" id="delete">
+                                    <i class="material-icons" style="font-size: 1.1em;">delete</i> Delete
+                                </button>
+                            </form>
 
                         </div>
                     </div>

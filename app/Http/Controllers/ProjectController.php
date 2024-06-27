@@ -107,7 +107,8 @@ class ProjectController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Project::destroy($id);
+        return redirect()->route('projects.index');
     }
     public function addMember($id)
     {
