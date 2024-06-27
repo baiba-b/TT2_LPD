@@ -25,19 +25,18 @@
     <main>
     @php
     function formatMinutes($minutes) {
-    if ($minutes < 0) {
-        return 'Invalid input: minutes cannot be negative';
-    }
+        if (!is_numeric($minutes) || $minutes < 0) {
+                return 'Invalid input: minutes cannot be negative or non-numeric';
+        }
+        $days = floor($minutes / 1440);
+        $hours = floor(($minutes % 1440) / 60);
+        $remainingMinutes = $minutes % 60;
 
-    $days = floor($minutes / 1440);
-    $hours = floor(($minutes % 1440) / 60);
-    $remainingMinutes = $minutes % 60;
-
-    return sprintf('%d d %02d h %02d m', 
+        return sprintf('%d d %02d h %02d m', 
                    $days, $days == 1 ? '' : 's', 
                    $hours, $hours == 1 ? '' : 's', 
                    $remainingMinutes, $remainingMinutes == 1 ? '' : 's');
-}
+    }
     @endphp
 
     @php
