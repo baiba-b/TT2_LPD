@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/projectStylesheet.css') }}">
     <link rel="stylesheet" href="{{ asset('css/showStylesheet.css') }}">
+    <link rel="stylesheet" href="\css\navbarStylesheet.css">
+
     <title>{{ $project->name }}</title>
 </head>
 <body>

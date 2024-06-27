@@ -3,7 +3,7 @@
 }
 
 /* CSS reset */
-* { 
+* {
     margin: 0;
     padding: 0;
 }
@@ -12,7 +12,7 @@ body {
     background-color: #FAF9F6;
     position: relative;
     margin: 0;
-    color: rgb(37, 36, 36); 
+    color: rgb(37, 36, 36);
     letter-spacing: 0.5px;
     height: 100vh;
     margin-left: 10%;
@@ -29,42 +29,6 @@ h1 {
     justify-content: center;
 }
 
-ul {
-    left: 0;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    display: flex;        
-    justify-content: center;
-    align-items: center; /* Center items vertically */
-    z-index: 1000; 
-    background-color: white;
-}
-
-li a {
-    display: block;
-    text-align: center;
-    padding: 14px 26px;
-    text-decoration: none;
-    font-size: 24px;
-    font-weight: bold;
-    color: rgb(37, 36, 36);
-}
-
-li a:hover:not(.active) {
-    background-color: #bfb9b9;
-    color: white;
-}
-
-.active {
-    background-color: #333cbb;
-    color: white;
-}
-
 .circle-button {
     display: block;
     text-align: center;
@@ -72,33 +36,39 @@ li a:hover:not(.active) {
     align-items: center;
     justify-content: center;
     color: black;
-    margin-right: 15px; /* Adjust the margin as needed */
+    margin-right: 15px;
+    /* Adjust the margin as needed */
 }
-.material-icons {  transform: scale(1.5); }
+
 
 .tasks-container {
-    display: flex; 
+    display: flex;
     flex-wrap: wrap;
-    gap: 2px; 
+    gap: 2px;
 }
 
 .task_box {
-    background-color: white; 
+    background-color: white;
     margin: auto;
     margin-top: 2%;
     padding: 20px;
-    color: black; 
+    color: black;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 300px; 
+    width: 300px;
     text-align: left;
     display: flex;
     align-items: center;
-    gap: 5%; 
+    gap: 5%;
+}
+
+.box-items {
+    flex-direction: column;
 }
 
 .task_box input[type="checkbox"] {
-    transform: scale(1.5); /* Adjust the size of the checkbox */
+    transform: scale(1.5);
+    /* Adjust the size of the checkbox */
 }
 
 .task_box label {
@@ -107,10 +77,12 @@ li a:hover:not(.active) {
     gap: 5px;
 }
 
-.task_box h2, .task_box p {
-    margin: 5px 0;}
+.task_box h2,
+.task_box p {
+    margin: 5px 0;
+}
 
-#submit{
+#submit {
     margin-top: 20px;
     padding: 10px 20px;
     background-color: #333cbb;
@@ -126,25 +98,24 @@ li a:hover:not(.active) {
     font-size: 1em;
     border: none;
     outline: none;
-    padding: 1vh 2vh; 
+    padding: 1vh 2vh;
     border-radius: 1vh;
     background-color: #3d4cf3;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     color: white;
-    display: inline-flex; 
-    align-items: center; 
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    cursor: pointer; 
-    gap: 1vh; 
+    cursor: pointer;
+    gap: 1vh;
     text-decoration: none;
 }
 
-h1{
-margin-bottom: 1%;
-
+h1 {
+    margin-bottom: 1%;
 }
 
-.buttonView{
+.buttonView {
     display: block;
     text-align: center;
     padding: 14px 26px;
@@ -155,11 +126,78 @@ margin-bottom: 1%;
     font-size: 1em;
     border: none;
     outline: none;
-    padding: 1vh 2vh; 
+    padding: 1vh 2vh;
     border-radius: 1vh;
     background-color: #bacfdc;
     color: black;
-    cursor: pointer; 
+    cursor: pointer;
     text-decoration: none;
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: rgb(185, 206, 221);
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked~.checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
     
 }
