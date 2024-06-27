@@ -27,21 +27,22 @@ class Project extends Model
         return $this->hasMany(Task::class, 'project_id', 'id');
     }
 
-   public function users()
+    public function users()
     {
-        return $this->belongsToMany(User::class, 'project_user', 'projectID', 'userID')
-                    ->withPivot('roleID')
+        return $this->belongsToMany(User::class, 'project_user', 'project_id', 'user_id')
+                    ->withPivot('role_id')
                     ->withTimestamps();
     }
+
     public function roles()
     {
-        return $this->belongsToMany(ProjectRole::class, 'project_user', 'projectID', 'roleID')
-                    ->withPivot('userID')
+        return $this->belongsToMany(ProjectRole::class, 'project_user', 'project_id', 'role_id')
+                    ->withPivot('user_id')
                     ->withTimestamps();
     }
+
     public function creator()
     {
         return $this->belongsTo(User::class, 'creator_id');
     }
-
 }

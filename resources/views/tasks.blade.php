@@ -17,8 +17,8 @@
         <ul>
             <li><a href="{{ route('dashboard') }}">Home</a></li>
             <li><a href="{{ route('connections.index') }}">Connections</a></li>
-            <li><a class="active" href="{{ route('projects.index') }}">Projects</a></li>
-            <li><a href="{{ route('tasks.index') }}">Tasks</a></li>
+            <li><a href="{{ route('projects.index') }}">Projects</a></li>
+            <li><a class="active" href="{{ route('tasks.index') }}">Tasks</a></li>
             <li><a href="{{url('/Timeline')}}">Timeline</a></li>
             <li>
                 <a href="{{ url('/profile') }}" id="profile-info">

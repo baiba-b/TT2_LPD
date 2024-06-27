@@ -56,6 +56,8 @@ class ProjectController extends Controller
         $project->estimated_workload = $request->input('estimated_workload');
         $project->creator_id = auth()->id();
         $project->save();
+
+        $project->users()->attach(auth()->id(), ['role_id' => 1]);
         return redirect()->route('projects.index')->with('success', 'Project created successfully.');
     }
 
@@ -117,7 +119,7 @@ class ProjectController extends Controller
     public function showParticipants(string $id)
     {
         $project = Project::find($id);
-        $participants = $project->participants;
+        $participants = $project->users;
 
         return view('projectsParticipants', compact('project', 'participants'));
     }

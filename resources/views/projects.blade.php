@@ -47,7 +47,7 @@
                 <h2>Missed deadlines: {{ $missedDeadlinesCount }}</h2>
                 <h2>Total: {{ $projectsCount }}</h2>
                 <a class="button" href="{{ route('projects.create') }}">
-                    <i class="material-icons" style="font-size: 1.5rem;">add_circle</i>New Project
+                    <i class="material-icons" id="add" style="font-size: 1.5rem;">add_circle</i>New Project
                 </a>
 
                 <div class="projects-container">
@@ -84,7 +84,7 @@
 
                             </div>
                         </div>
-                        <p class="project_text">{{ $project->name }}</p>
+                        <h3 class="project_text">{{ $project->name }}</h3>
                         <p class="project_due_date">{{ $project->due_date ?? 'No due date set' }}</p>
                         <p class="project_days_left">{{ $daysUntilDeadline }} days left</p>
                         <p class="project_estimated_workload">Estimated Workload:</p>

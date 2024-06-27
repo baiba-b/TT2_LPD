@@ -12,8 +12,7 @@
 <body>
     <div class="container">
         <nav>
-            <ul>
-                
+            <ul> 
                 <li><a href="{{ route('dashboard') }}">Home</a></li>
                 <li><a href="{{ route('connections.index') }}">Connections</a></li>
                 <li><a class="active" href="{{ route('projects.index') }}">Projects</a></li>
@@ -29,12 +28,10 @@
                         <span class="profile-name">{{ Auth::user()->name }}</span>
                     </a>
                 </li>
-
             </ul>
         </nav>
         <div class="user-management">
             <h2>User Management</h2>
-            <div class="breadcrumb">Home > Permissions & Accounts > User Management</div>
             <div class="toolbar">
                 <input type="text" placeholder="Search User">
                 <button class="add-user-btn">Add User</button>
@@ -49,38 +46,33 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                @foreach($participants as $participant)
                     <tr>
                         <td><input type="checkbox"></td>
                         <td>
                             <div class="user-info">
-                                <img src="user-pic.jpg" alt="User Picture">
+                            @if(Auth::user()->profile_picture)
+                        <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture" class="exception" style="width: 50px; height: 50px;">
+                        @else
+                        <img src="{{ asset('default_profile_picture.png') }}" alt="Default Profile Picture" class="exception" style="width: 50px; height: 50px;">
+                        @endif
                                 <div>
-                                    <p>Yeray Rosales</p>
-                                    <p class="email">name@email.com</p>
-                                    <p class="status not-logged-in">Not Logged in</p>
+                                    <p>{{Auth::user()->name}}</p>
+                                    <p class="email">{{Auth::user()->email}}</p>
                                 </div>
                             </div>
                         </td>
                         <td>
-                            <span class="role manager">Manager</span>
-                            <span class="role admin">Admin</span>
+                            <span class="role">{{ $participant->role->name }}</span>
                         </td>
                         <td>
                             <button class="action-btn modify">Modify Roles</button>
                             <button class="action-btn remove">Remove User</button>
                         </td>
                     </tr>
-
+                    @endforeach
                 </tbody>
             </table>
-            <div class="pagination">
-                <span>Displaying page</span>
-                <button class="page-btn">First</button>
-                <button class="page-btn">10</button>
-                <button class="page-btn">11</button>
-                <button class="page-btn">Last</button>
-            </div>
         </div>
     </div>
 </body>
