@@ -5,6 +5,9 @@
     <div class="mb-4">
         <label for="profile_picture" class="block text-gray-700 text-sm font-bold mb-2">Profile Picture</label>
         <input type="file" name="profile_picture" id="profile_picture" class="form-control-file">
+        @error('profile_picture')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+        @enderror
         @if (auth()->user()->profile_picture)
             <img src="{{ Storage::url(auth()->user()->profile_picture) }}" alt="Profile Picture" class="img-thumbnail mt-2" style="width: 150px; height: 150px;">
         @endif

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use Illuminate\Support\Facades\Log;
 
 class TaskController extends Controller
 {
@@ -97,8 +98,8 @@ class TaskController extends Controller
      */
     public function destroy(string $id)
     {
-        $task = Task::findOrFail($id);
-        $task->delete();
-        return redirect()->route('tasks.index')->with('success', 'Task deleted successfully.');
+        Task::destroy($id);
+        return redirect()->route('tasks.index');
+    
     }
 }

@@ -22,32 +22,46 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
+    public function index()
+    {
+        return view('profile.index');
+    }
     public function updateProfilePicture(Request $request)
     {
+        $user = Auth::user();
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'You must be logged in to update your profile.');
+        }
+
         $request->validate([
-            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ], [
+            'profile_picture.max' => 'The profile picture may not be greater than 2MB.',
         ]);
 
-        $user = Auth::user();
-
         if ($request->hasFile('profile_picture')) {
+            // Delete old profile picture if it exists
             if ($user->profile_picture) {
                 Storage::delete($user->profile_picture);
             }
-            $path = $request->file('profile_picture')->store('profile_pictures');
-            // Update the path
+
+            // Store new profile picture
+            $path = $request->file('profile_picture')->store('profile_pictures', 'public');
+
+            // Update user profile picture path
             $user->profile_picture = $path;
         }
 
-        // $user->save();
-
-        return redirect()->route('profile.edit');
+        // Save the updated user model
+        $user->save();
+        return redirect()->route('profile.edit')->with('success', 'Profile updated successfully.');
     }
     /**
      * Update the user's profile information.
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+       
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {

@@ -1,34 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-@php
+    @php
     function formatMinutes($minutes) {
-    if ($minutes < 0) {
-        return 'Invalid input: minutes cannot be negative';
-    }
+    if ($minutes < 0) { return 'Invalid input: minutes cannot be negative' ; } $days=floor($minutes / 1440); $hours=floor(($minutes % 1440) / 60); $remainingMinutes=$minutes % 60; return sprintf('%d d %02d h %02d m', $days, $days==1 ? '' : 's' , $hours, $hours==1 ? '' : 's' , $remainingMinutes, $remainingMinutes==1 ? '' : 's' ); } @endphp <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ asset('css/projectStylesheet.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/showStylesheet.css') }}">
+        <link rel="stylesheet" href="\css\navbarStylesheet.css">
 
-    $days = floor($minutes / 1440);
-    $hours = floor(($minutes % 1440) / 60);
-    $remainingMinutes = $minutes % 60;
-
-    return sprintf('%d d %02d h %02d m', 
-                   $days, $days == 1 ? '' : 's', 
-                   $hours, $hours == 1 ? '' : 's', 
-                   $remainingMinutes, $remainingMinutes == 1 ? '' : 's');
-}
-    @endphp
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/projectStylesheet.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/showStylesheet.css') }}">
-    <link rel="stylesheet" href="\css\navbarStylesheet.css">
-
-    <title>{{ $task->name }}</title>
+        <title>{{ $task->name }}</title>
 </head>
+
 <body>
 
     <nav>
         <ul>
+            <li class = "exception">
+                <a href="{{ url('/profile') }}" class="exception">
+                    @if(Auth::user()->profile_picture)
+                    <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture" class="exception" style="width: 35px; height: 35px;">
+                    @else
+                    <img src="{{ asset('default_profile_picture.png') }}" alt="Default Profile Picture" class="exception" style="width: 35px; height: 35px;">
+                    @endif
+                </a>
+            </li>
             <li><a href="{{ route('dashboard') }}">Home</a></li>
             <li><a href="{{ route('connections.index') }}">Connections</a></li>
             <li><a href="{{ route('projects.index') }}">Projects</a></li>
@@ -40,7 +37,7 @@
         <div class="info">
             <h1>{{ $task->name }}</h1>
             <p>{{ $task->description }}</p>
-            <p>Estimated Workload: {{ formatMinutes($task->estimated_workload) }}</p>        
+            <p>Estimated Workload: {{ formatMinutes($task->estimated_workload) }}</p>
             <p>Invested Time: {{ intdiv($task->invested_time, 60) }} hours {{ $task->invested_time % 60 }} minutes</p>
             <p>Due Date: {{ $task->due_date }}</p>
             <p>Project: {{ $task->project->name ?? 'No project assigned'  }}</p>
@@ -50,4 +47,5 @@
 
     </main>
 </body>
+
 </html>

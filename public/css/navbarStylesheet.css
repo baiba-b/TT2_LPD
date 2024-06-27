@@ -1,4 +1,5 @@
-ul {
+ul{
+    
     left:0;
     list-style-type: none;
     margin: 0;
@@ -16,12 +17,18 @@ ul {
 li a {
     display: block;
     text-align: center;
-    padding: 14px 26px;
     text-decoration: none;
     font-size: 24px;
     font-weight: bold;
     color: rgb(37, 36, 36);
     letter-spacing: 0.5px;
+}
+li a:not(.exception)
+{
+    padding: 14px 26px;
+}
+.exception{
+    padding: 5px;
 }
 
 li a:hover:not(.active) {
@@ -33,5 +40,4 @@ li a:hover:not(.active) {
     background-color: #333cbb;
     color: white;
 }
-
 
