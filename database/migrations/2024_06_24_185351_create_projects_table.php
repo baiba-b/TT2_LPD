@@ -17,7 +17,8 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->date('due_date')->nullable();
             $table->integer('invested_time')->nullable();
-            $table->integer('estimated_workload')->nullable(); 
+            $table->integer('estimated_workload')->nullable();
+            $table->foreignId('creator_id')->constrained('users')->onDelete('cascade'); 
             $table->timestamps();
         });
     }

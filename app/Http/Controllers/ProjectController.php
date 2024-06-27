@@ -48,11 +48,13 @@ class ProjectController extends Controller
             'estimated_workload' => 'required|integer|min:0',
         ]);
 
+
         $project = new Project();
         $project->name = $request->input('name');
         $project->description = $request->input('description');
         $project->due_date = $request->input('due_date');
         $project->estimated_workload = $request->input('estimated_workload');
+        $project->creator_id = auth()->id();
         $project->save();
         return redirect()->route('projects.index')->with('success', 'Project created successfully.');
     }
@@ -62,8 +64,9 @@ class ProjectController extends Controller
      */
   public function show($id)
 {
-    $project = Project::find($id);
-    return view('projectShow', compact('project'));
+     $project = Project::with('creator')->findOrFail($id);
+
+        return view('projectShow', compact('project'));
 }
 
     /**

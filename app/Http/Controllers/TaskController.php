@@ -41,6 +41,7 @@ class TaskController extends Controller
         $task->description = $request->input('description');
         $task->due_date = $request->input('due_date');
         $task->estimated_workload = $request->input('estimated_workload');
+        $task->creator_id = auth()->id();
         $task->save();
         return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
     }
@@ -50,7 +51,8 @@ class TaskController extends Controller
      */
     public function show(string $id)
     {
-        $task = Task::find($id);
+        $task = Task::with('creator')->findOrFail($id);
+
         return view('taskShow', compact('task'));
     }
 

@@ -11,7 +11,7 @@ use App\Models\TaskRole;
 class Task extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'description','estimated_workload','invested_time','due_date','projectID'];
+    protected $fillable = ['name', 'description','estimated_workload','invested_time','due_date','projectID', 'creator_id'];
 
     public function project()
     {
@@ -32,4 +32,10 @@ class Task extends Model
                     ->withTimestamps();
     }
 
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'creator_id');
+    }
+
+    
 }

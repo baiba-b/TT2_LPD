@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('due_date')->nullable();
             $table->foreignId('project_id')->nullable()->constrained()->onDelete('cascade'); // 
             $table->integer('invested_time')->nullable();
+            $table->foreignId('creator_id')->constrained('users')->onDelete('cascade'); 
             $table->timestamps();
         });
     }

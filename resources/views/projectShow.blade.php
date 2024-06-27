@@ -41,6 +41,8 @@
         <p>{{ $project->description }}</p>
         <p>Due Date: {{ $project->due_date }}</p>
         <p>Estimated Workload: {{ formatMinutes($project->estimated_workload) }}</p>
+        <p>Creator: {{ $task->creator->name ?? 'Unknown' }}</p>
+        <p>Last updated: {{ $task->updated_at}}</p>
 
 
 

@@ -44,6 +44,8 @@
             <p>Invested Time: {{ intdiv($task->invested_time, 60) }} hours {{ $task->invested_time % 60 }} minutes</p>
             <p>Due Date: {{ $task->due_date }}</p>
             <p>Project: {{ $task->project->name ?? 'No project assigned'  }}</p>
+            <p>Creator: {{ $task->creator->name ?? 'Unknown' }}</p>
+            <p>Last updated: {{ $task->updated_at}}</p>
         </div>
 
     </main>

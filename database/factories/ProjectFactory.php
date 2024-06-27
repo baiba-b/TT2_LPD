@@ -2,6 +2,7 @@
 namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Support\Carbon;
 
 /**
@@ -23,6 +24,7 @@ class ProjectFactory extends Factory
             'due_date' => $this->faker->dateTimeBetween('now', '+1 year'),
            'invested_time' => $this->faker->numberBetween(0, 1600), // Total minutes
             'estimated_workload' => $this->faker->numberBetween(0, 1600), // Total minutes
+            'creator_id' => User::factory()
         ];
     }
        /**

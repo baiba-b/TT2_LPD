@@ -13,7 +13,14 @@ use App\Models\ProjectRole;
 class Project extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','description','due_date'];
+    protected $fillable = [
+        'name',
+        'description',
+        'due_date',
+        'invested_time',
+        'estimated_workload',
+        'creator_id'
+    ];
 
     public function tasks()
     {
