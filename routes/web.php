@@ -62,3 +62,10 @@ Route::post('connections/{connection}/accept', [ConnectionController::class, 'ac
 Route::post('connections/{connection}/reject', [ConnectionController::class, 'rejectRequest'])->name('connections.rejectRequest');
 // Custom route for sending messages
 Route::post('messages/send', [CommunicationsController::class, 'sendMessage'])->name('messages.sendMessage');
+//middleware to make sure user is authenticated before doing any actions with projects and tasks
+Route::middleware(['auth'])->group(function () { 
+    Route::resource('tasks', TaskController::class);
+});
+Route::middleware(['auth'])->group(function () { 
+    Route::resource('projects', ProjectController::class);
+});

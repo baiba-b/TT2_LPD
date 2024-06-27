@@ -30,7 +30,7 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:100',
+            'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'due_date' => 'nullable|date',
             'estimated_workload' => 'required|integer|min:0',
@@ -41,7 +41,7 @@ class TaskController extends Controller
         $task->description = $request->input('description');
         $task->due_date = $request->input('due_date');
         $task->estimated_workload = $request->input('estimated_workload');
-        $task->creator_id = auth()->id();
+        $task->creator_id = auth()->id(); 
         $task->save();
         return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
     }
@@ -97,7 +97,8 @@ class TaskController extends Controller
      */
     public function destroy(string $id)
     {
-        Task::destroy($id);
-        return redirect()->route('tasks.index');
+        $task = Task::findOrFail($id);
+        $task->delete();
+        return redirect()->route('tasks.index')->with('success', 'Task deleted successfully.');
     }
 }

@@ -64,7 +64,7 @@
                  <div class="dropdown" style="float:right;">
                         <a class="dropbtn"><i class="material-icons" style="font-size: 1.5em;">more_vert</i></a>
                         <div class="dropdown-content">
-                            <a  href="{{ route('projects.edit', $project->id) }}">
+                            <a  href="{{ route('projects.edit', $project->id) }}" >
                                 <i class="material-icons" style="font-size: 1.1em;">edit</i>  Edit
                             </a>
                             <form method="POST" action="{{ route('projects.destroy', $project->id) }}" >
