@@ -35,6 +35,10 @@ Route::redirect('/home', '/homepage');
 Route::get('/homepage', function () {
     return view('homepage');
 });
+
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::put('/profile/update-picture', [ProfileController::class, 'updateProfilePicture'])->name('profile.update_picture');
+
 Route::get('locale/{lang}',[LocaleController::class, 'setLocale']);
 // Resource routes
 Route::resource('users', UserController::class);
