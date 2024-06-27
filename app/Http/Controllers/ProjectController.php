@@ -33,8 +33,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $projects = Project::all();
-        return view('projectCreate', ['projects' => $projects]);
+        return view('projectCreate');
     }
 
     /**
@@ -64,8 +63,7 @@ class ProjectController extends Controller
   public function show($id)
 {
     $project = Project::find($id);
-    $creator = $project->creator;
-    return view('projectShow', compact('project', 'creator'));
+    return view('projectShow', compact('project'));
 }
 
     /**

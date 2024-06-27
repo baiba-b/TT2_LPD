@@ -12,7 +12,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::orderByRaw('due_date IS NULL, due_date ASC')->get();
         return view('tasks', compact('tasks'));
     }
 
@@ -21,7 +21,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('tasksCreate');
     }
 
     /**
@@ -29,7 +29,20 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:100',
+            'description' => 'nullable|string',
+            'due_date' => 'nullable|date',
+            'estimated_workload' => 'required|integer|min:0',
+        ]);
+
+        $task = new Task();
+        $task->name = $request->input('name');
+        $task->description = $request->input('description');
+        $task->due_date = $request->input('due_date');
+        $task->estimated_workload = $request->input('estimated_workload');
+        $task->save();
+        return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
     }
 
     /**
@@ -37,7 +50,8 @@ class TaskController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $task = Task::find($id);
+        return view('taskShow', compact('task'));
     }
 
     /**

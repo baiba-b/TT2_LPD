@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('css/projectStylesheet.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/showStylesheet.css') }}">
+    <title>{{ $project->name }}</title>
+</head>
+<body>
 @php
     function formatMinutes($minutes) {
     if ($minutes < 0) {
@@ -17,18 +25,11 @@
                    $remainingMinutes, $remainingMinutes == 1 ? '' : 's');
 }
     @endphp
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/projectStylesheet.css') }}">
-    <title>{{ $project->name }}</title>
-</head>
-<body>
-
     <nav>
         <ul>
             <li><a href="{{ route('dashboard') }}">Home</a></li>
             <li><a href="{{ route('connections.index') }}">Connections</a></li>
-            <li><a href="{{ route('projects.index') }}">Projects</a></li>
+            <li><a class="active"  href="{{ route('projects.index') }}">Projects</a></li>
             <li><a href="{{ route('tasks.index') }}">Tasks</a></li>
             <li><a href="{{ url('/Timeline') }}">Timeline</a></li>
         </ul>

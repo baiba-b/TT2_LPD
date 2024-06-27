@@ -1,0 +1,25 @@
+body{
+    margin: 0% 10%;
+    padding: 0% 5%;
+}
+
+main{
+    background: linear-gradient(150deg, #72a9e9, #4d47c4);
+    height: 100%;
+    margin-top: 55.2px;
+    color: white;
+}
+nav{
+    margin-bottom: 0;
+}
+.info{
+    padding: 10%;
+    text-align: center;
+}
+h1{
+    margin-bottom: 2%;
+}
+p{
+    margin-bottom: 1%;
+
+}

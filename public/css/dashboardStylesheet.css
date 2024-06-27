@@ -50,4 +50,4 @@ li a:hover:not(.active) {
     color: black;
     margin-right: 15px; /* Adjust the margin as needed */
 }
-.material-icons {  transform: scale(1.5); }
+.material-icons {  transform: scale(1); }

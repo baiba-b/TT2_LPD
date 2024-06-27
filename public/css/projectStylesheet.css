@@ -144,7 +144,6 @@ li a:hover:not(.active) {
     text-align: center;
     padding: 14px 26px;
     text-decoration: none;
-    font-size: 24px;
     font-weight: bold;
     color: rgb(37, 36, 36);
     margin-top: 3%;
@@ -169,6 +168,6 @@ li a:hover:not(.active) {
     align-items: center;
     justify-content: center;
     color: black;
-    margin-right: 15px; /* Adjust the margin as needed */
+    margin-right: 15px; 
 }
 .material-icons {  transform: scale(1.5); }
