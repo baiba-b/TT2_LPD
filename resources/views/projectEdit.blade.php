@@ -39,7 +39,7 @@
             @method('PUT')
             <div class="form-group">
                 <label for="name">Project Name</label>
-                <input type="text" name="name" id="name" value="{{ $project->name }}" required>
+                <input type="text" name="name" id="name" maxlength="50" value="{{ $project->name }}" required>
             </div>
             <div class="form-group">
                 <label for="description">Description</label>

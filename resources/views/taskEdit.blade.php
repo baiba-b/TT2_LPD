@@ -37,7 +37,7 @@
             @method('PUT')
             <div class="form-group">
                 <label for="name">Task Name</label>
-                <input type="text" name="name" id="name" value="{{ $task->name }}" required>
+                <input type="text" name="name" id="name" maxlength="50" value="{{ $task->name }}" required>
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
