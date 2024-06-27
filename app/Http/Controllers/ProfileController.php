@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -20,7 +22,27 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
+    public function updateProfilePicture(Request $request)
+    {
+        $request->validate([
+            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
+        $user = Auth::user();
+
+        if ($request->hasFile('profile_picture')) {
+            if ($user->profile_picture) {
+                Storage::delete($user->profile_picture);
+            }
+            $path = $request->file('profile_picture')->store('profile_pictures');
+            // Update the path
+            $user->profile_picture = $path;
+        }
+
+        // $user->save();
+
+        return redirect()->route('profile.edit');
+    }
     /**
      * Update the user's profile information.
      */
