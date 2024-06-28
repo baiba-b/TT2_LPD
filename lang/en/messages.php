@@ -29,5 +29,8 @@ return [
     'connect' => 'Connections',
     'settings' => 'Settings',
     'acty' => 'activity',
+    'hrs' => 'hours',
+    'd' => 'days',
+    'upd' => 'Updates',
 
 ];

@@ -22,9 +22,9 @@
             <li>
                 <a href="{{ url('/profile') }}" id="profile-info">
                     @if(Auth::user()->profile_picture)
-                    <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture" class="exception" style="width: 35px; height: 35px;">
+                    <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt=@lang('messages.pp') class="exception" style="width: 35px; height: 35px;">
                     @else
-                    <img src="{{ asset('images/default_profile_picture.png') }}" alt="Default Profile Picture" class="exception" style="width: 35px; height: 35px;">
+                    <img src="{{ asset('images/default_profile_picture.png') }}" alt=@lang('messages.pp') class="exception" style="width: 35px; height: 35px;">
                     @endif
                     <span class="profile-name">{{ Auth::user()->name }}</span>
                 </a>
@@ -41,18 +41,18 @@
                         @else 
                         <h2>@lang('messages.name')</h2>
                         @endif
-                    <p>15 active tasks</p>
-                    <a href="#">profile</a>
+                    <p>15 @lang('messages.act') @lang('messages.tasks')</p>
+                    <a href="#">@lang('messages.profile')</a>
                 </div>
             </div>
             <div class="section most-urgent-tasks">
-                <h3>Most urgent projects</h3>
+                <h3>@lang('messages.mstUrg') @lang('messages.tasks')</h3>
                 @foreach($topProjects as $topProject)
                 <div class="task-card">
                     <div class="task-color" style="background-color: {{ $topProject->random_color;}}"></div>
                     <div class="task-info">
                         <h4>{{$topProject->name }}</h4>
-                        <p>workload: {{ $topProject->estimated_workload}}hours</p>
+                        <p>@lang('messages.workload'): {{ $topProject->estimated_workload}}@lang('messages.hrs')</p>
                         @php
                         $deadline = $topProject->due_date ? new \DateTime($topProject->due_date) : null;
                     $now = new \DateTime();
@@ -65,7 +65,7 @@
 
                         @endphp
 
-                        <p>Due in {{$daysUntilDeadline}} days</p>
+                        <p>@lang('messages.due'){{$daysUntilDeadline}} days</p>
                         <p>{{floor($topProject->invested_time/$topProject->estimated_workload)}}% done</p>
                     </div>
                 </div>
