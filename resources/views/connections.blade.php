@@ -15,7 +15,6 @@
             <li><a class="active" href="{{ route('connections.index') }}">Connections</a></li>
             <li><a href="{{ route('projects.index') }}">Projects</a></li>
             <li><a href="{{ route('tasks.index') }}">Tasks</a></li>
-            <li><a href="{{url('/Timeline')}}">Timeline</a></li>
             <li>
                 <a href="{{ url('/profile') }}" id="profile-info">
                     @if(Auth::user()->profile_picture)
@@ -41,8 +40,14 @@
                         <div class="user-info">
                             <h3>{{ $connection->name }}</h3>
                             <p>{{ $connection->email }}</p>
+                            <p>{{ $connection->pivot->type }}</p>
                         </div>
                         <a href="{{ route('messages.show', $connection->id) }}" class="connect-button">Message</a>
+                        <form action="{{ route('connections.destroy', $connection->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="remove-button">Remove</button>
+                        </form>
                     </div>
                 @endforeach
             @endif
@@ -51,7 +56,7 @@
         <div class="section">
             <h2>Users You've Added</h2>
             @if($connections->isEmpty())
-                <p>You have not added any users yet.</p>
+                <p>None</p>
             @else
                 @foreach($connections as $connection)
                     @if(!$mutualConnections->contains($connection))
@@ -60,7 +65,13 @@
                             <div class="user-info">
                                 <h3>{{ $connection->name }}</h3>
                                 <p>{{ $connection->email }}</p>
+                                <p>{{ $connection->pivot->type }}</p>
                             </div>
+                            <form action="{{ route('connections.destroy', $connection->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to remove this connection?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="remove-button">Remove</button>
+                        </form>
                         </div>
                     @endif
                 @endforeach
@@ -70,7 +81,7 @@
         <div class="section">
             <h2>Users Who Have Added You</h2>
             @if($connectedTo->isEmpty())
-                <p>No users have added you yet.</p>
+                <p>None</p>
             @else
                 @foreach($connectedTo as $connection)
                     @if(!$mutualConnections->contains($connection))
@@ -79,6 +90,7 @@
                             <div class="user-info">
                                 <h3>{{ $connection->name }}</h3>
                                 <p>{{ $connection->email }}</p>
+                                <p>{{ $connection->pivot->type }}</p>
                             </div>
                         </div>
                     @endif

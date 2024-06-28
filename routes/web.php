@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/connections', [ConnectionController::class, 'index'])->name('connections.index');
     Route::post('/connections', [ConnectionController::class, 'store'])->name('connections.store');
+    Route::delete('/connections/{user}', [ConnectionController::class, 'destroy'])->name('connections.destroy');
     Route::get('/messages/{user}', [MessageController::class, 'show'])->name('messages.show');
     Route::post('/messages/{user}', [MessageController::class, 'store'])->name('messages.store');
 });
