@@ -15,8 +15,8 @@
             <ul> 
                 <li><a href="{{ route('dashboard') }}">Home</a></li>
                 <li><a href="{{ route('connections.index') }}">Connections</a></li>
-                <li><a class="active" href="{{ route('projects.index') }}">Projects</a></li>
-                <li><a href="{{ route('tasks.index') }}">Tasks</a></li>
+                <li><a href="{{ route('projects.index') }}">Projects</a></li>
+                <li><a class="active" href="{{ route('tasks.index') }}">Tasks</a></li>
                 <li><a href="{{ url('/Timeline') }}">Timeline</a></li>
                 <li>
                     <a href="{{ url('/profile') }}" id="profile-info">
@@ -33,13 +33,14 @@
         <div class="user-management">
             <h2>User Management</h2>
             <div class="toolbar">
-                <a href="{{ route('projects.addMember', $project->id) }}">
+                <a href="{{ route('tasks.addMember', $task->id) }}">
                     <button class="add-user-btn">Add User</button>
                 </a>
             </div>
             <table>
                 <thead>
                     <tr>
+                        <th><input type="checkbox"></th>
                         <th>Name</th>
                         <th>User Role</th>
                         <th>Actions</th>
@@ -48,6 +49,7 @@
                 <tbody>
                 @foreach($users as $user)
                     <tr>
+                        <td><input type="checkbox"></td>
                         <td>
                             <div class="user-info">
                                 @if($user->profile_picture)
@@ -62,7 +64,7 @@
                             </div>
                         </td>
                         <td>
-                        <span class="role">{{ $project->roles->where('pivot.user_id', $user->id)->first()->name ?? 'No role assigned' }}</span>                        </td>
+                        <span class="role">{{ $task->roles->where('pivot.user_id', $user->id)->first()->name ?? 'No role assigned' }}</span>                        </td>
                         <td>
                             <button class="action-btn modify">Modify Roles</button>
                             <button class="action-btn remove">Remove User</button>

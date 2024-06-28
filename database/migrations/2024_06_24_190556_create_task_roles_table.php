@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('task_roles', function (Blueprint $table) {
             $table->id();
-            $table->string('role_name', 100);
+            $table->string('name', 100);
             $table->boolean('read')->default(false);
             $table->boolean('write')->default(false);
+            $table->boolean('mark_complete')->default(false);
             $table->boolean('update')->default(false);
-            $table->boolean('notify')->default(false);
+            
             $table->timestamps();
         });
-    }
+    } 
 
     /**
      * Reverse the migrations.
