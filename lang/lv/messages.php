@@ -29,4 +29,13 @@ return [
     'connect' => 'Kontaktpersonas',
     'settings' => 'Iestatījumi',
     'acty' => 'aktivitāte',
+    'h' => 'stundas',
+    'd' => 'dienas',
+    'upd' => 'Jaunumi',
+    'updDesc' => 'Atjaunināja aprakstu',
+    'min' => 'minūtes',
+    'you' => 'Tev',
+    'created' => 'Izveidoja',
+    'crtNew' => 'Izveidoja jaunu',
+    'home' => 'Sākums',
 ];

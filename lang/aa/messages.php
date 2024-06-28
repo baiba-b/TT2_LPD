@@ -29,4 +29,13 @@ return [
     'connect' => 'AAAAAAAAA',
     'settings' => 'AAA',
     'acty' => 'AAAAAA',
+    'h' => 'A',
+    'd' => 'AA',
+    'upd' => 'AAAAA',
+    'updDesc' => 'AAAA A AAAAAAAAA AAAAAAAA',
+    'min' => 'AAA',
+    'you' => 'AAAAA',
+    'created' => 'AAAAAAA',
+    'crtNew' => 'AAAAAAAAA AAAAAA',
+    'home' => 'AAAAAAA',
 ];
