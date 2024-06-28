@@ -76,14 +76,14 @@ class User extends Authenticatable
     public function connections()
     {
         return $this->belongsToMany(User::class, 'connections', 'user_id', 'connected_user_id')
-                    ->withPivot('status', 'type')
+                    ->withPivot('type')
                     ->withTimestamps();
     }
 
     public function connectedTo()
     {
         return $this->belongsToMany(User::class, 'connections', 'connected_user_id', 'user_id')
-                    ->withPivot('status', 'type')
+                    ->withPivot('type')
                     ->withTimestamps();
     }
 

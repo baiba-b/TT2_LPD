@@ -14,8 +14,8 @@ class ConnectionController extends Controller
         $user = Auth::user();
 
         // Get connections where the user is either user_id or connected_userID
-        $connections = $user->connections()->wherePivot('status', 'accepted')->get();
-        $connectedBy = $user->connectedTo()->wherePivot('status', 'accepted')->get();
+        $connections = $user->connections()->get();
+        $connectedBy = $user->connectedTo()->get();
 
         return view('connections', compact('connections', 'connectedBy'));
     }
