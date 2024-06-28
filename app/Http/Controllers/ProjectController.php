@@ -8,11 +8,14 @@ use App\Models\ProjectRole;
 use App\Models\User;
 use App\Models\Connection;
 use Illuminate\Support\Str;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 
 use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
@@ -88,8 +91,9 @@ class ProjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        
         $project = Project::find($id);
-    
+        $this->authorize('update-project', $project);
         if (!$project) {
             return redirect()->route('projects.index')->with('error', 'Project not found.');
         }
@@ -115,6 +119,8 @@ class ProjectController extends Controller
      */
     public function destroy(string $id)
     {
+        $project = Project::find($id);
+        $this->authorize('update-project', $project);
         Project::destroy($id);
         return redirect()->route('projects.index');
     }

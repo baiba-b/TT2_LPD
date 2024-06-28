@@ -68,9 +68,13 @@
                         <div class="dropdown" style="float:right;">
                             <a class="dropbtn"><i class="material-icons" style="font-size: 1.5em;">more_vert</i></a>
                             <div class="dropdown-content">
+                            @can('update-project', $project)
                                 <a href="{{ route('projects.edit', $project->id) }}">
                                     <i class="material-icons" style="font-size: 1.1em;">edit</i> Edit
                                 </a>
+                                @endcan
+                                @can('update-project', $project)
+
                                 <form method="POST" action="{{ route('projects.destroy', $project->id) }}">
                                     @csrf
                                     @method('DELETE')
@@ -78,6 +82,8 @@
                                         <i class="material-icons" style="font-size: 1.1em;" id="deleteI">delete</i> Delete
                                     </button>
                                 </form>
+                                @endcan
+
                                 <a href="{{ route('projects.participants', $project->id) }}">
                                     <i class="material-icons" style="font-size: 1.1em;">group</i> Manage group
                                 </a>
