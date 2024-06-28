@@ -155,9 +155,9 @@
         </section>
         <section class="right-panel">
             <div class="actions">
-                <h3>@lang('messages.create') @lang('messages.task')</h3>
-                <h3>@lang('messages.create') @lang('messages.proj')</h3>
-                <h3>@lang('messages.settings')</h3>
+                <a href="{{ route('tasks.create') }}"><h3>@lang('messages.create') @lang('messages.task')</h3></a>
+                <a href="{{ route('projects.create') }}"><h3>@lang('messages.create') @lang('messages.proj')</h3></a>
+                <a href="{{ route('profile.edit') }}"><h3>@lang('messages.settings')</h3></a>
             </div>
             <div class="section friend-activity">
                 <h3>@lang('messages.friend') @lang('messages.acty')</h3>
