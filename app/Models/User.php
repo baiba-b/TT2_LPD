@@ -12,11 +12,10 @@ use App\Models\ProjectRole;
 use App\Models\TaskRole;
 use App\Models\Notification;
 use App\Models\Message;
-use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasRoles;
+    use HasFactory, Notifiable;
 
 
     protected $fillable = [

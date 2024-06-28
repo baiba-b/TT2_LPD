@@ -49,15 +49,15 @@
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea name="description" id="description" required>{{ $project->description }}</textarea>
+                <textarea name="description" id="description" >{{ $project->description }}</textarea>
             </div>
             <div class="form-group">
                 <label for="due_date">Due Date</label>
-                <input type="date" name="due_date" id="due_date" value="{{ $project->due_date }}" required>
+                <input type="date" name="due_date" id="due_date" value="{{ $project->due_date }}">
             </div>
             <div class="form-group">
                 <label for="estimated_workload">Estimated Workload (minutes)</label>
-                <input type="number" name="estimated_workload" id="estimated_workload" value="{{ $project->estimated_workload }}" required>
+                <input type="number" name="estimated_workload" id="estimated_workload" value="{{ $project->estimated_workload }}" >
             </div>
             <button type="submit">Update Project</button>
         </form>

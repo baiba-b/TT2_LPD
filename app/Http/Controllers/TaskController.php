@@ -7,6 +7,8 @@ use App\Models\Task;
 use App\Models\TaskRole;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 
 class TaskController extends Controller
 {
@@ -36,19 +38,20 @@ class TaskController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'due_date' => 'nullable|date',
-            'estimated_workload' => 'required|integer|min:0',
+            'estimated_workload' => 'nullable|integer|min:0',
         ]);
 
-        $task = new Task();
-        $task->name = $request->input('name');
-        $task->description = $request->input('description');
-        $task->due_date = $request->input('due_date');
-        $task->estimated_workload = $request->input('estimated_workload');
-        $task->creator_id = auth()->id(); 
-        $task->save();
-
-        $task->users()->attach(auth()->id(), ['user_id' => auth()->id(), 'role_id' => 1]);        
-        return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
+        // Create the task
+        $task = Task::create([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'due_date' => $request->input('due_date'),
+            'estimated_workload' => $request->input('estimated_workload'),
+            'creator_id' => auth()->id(),
+        ]);
+     
+        $task->users()->attach($task->creator_id, ['role_id' => 1]);
+            return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
     }
 
     /**
@@ -82,12 +85,12 @@ class TaskController extends Controller
         }
     
         $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'due_date' => 'required|date',
-            'estimated_workload' => 'required|integer|min:0',
+            'name' => 'required|string|max:255', // Keep required if name is still mandatory
+            'description' => 'nullable|string', 
+            'due_date' => 'nullable|date',       
+            'estimated_workload' => 'nullable|integer|min:0', 
         ]);
-    
+        
         $task->name = $request->input('name');
         $task->description = $request->input('description');
         $task->due_date = $request->input('due_date');
@@ -127,7 +130,6 @@ class TaskController extends Controller
     {
         $task = task::findOrFail($id);
         $user = User::findOrFail($request->user_id); // Find the user by the provided user ID
-
         // Attach the user to the task with the selected role
         $task->users()->attach($user->id, ['role_id' => $request->role_id]);
 
