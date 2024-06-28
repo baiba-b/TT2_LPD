@@ -28,7 +28,7 @@
                     @if(Auth::user()->profile_picture)
                     <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture" class="exception" style="width: 35px; height: 35px;">
                     @else
-                    <img src="{{asset('/images/default_profile_picture.png') }}" alt="Default Profile Picture" class="exception" style="width: 35px; height: 35px;">
+                    <img src="http://lpd/default_profile_picture.png" alt="Default Profile Picture" class="exception" style="width: 35px; height: 35px;">
                     @endif
                     <span class="profile-name">{{ Auth::user()->name }}</span>
                 </a>
@@ -43,9 +43,6 @@
             <p>Estimated Workload: {{ formatMinutes($project->estimated_workload) }}</p>
             <p>Creator: {{ $project->creator->name ?? 'Unknown' }}</p>
             <p>Last updated: {{ $project->updated_at}}</p>
-
-
-
         </main>
 </body>
 
