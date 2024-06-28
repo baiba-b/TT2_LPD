@@ -155,4 +155,16 @@ class ProjectController extends Controller
         return redirect()->route('projects.show', $project)->with('success', 'Member added successfully.');
     }
 
+    public function addInvestedTime(Request $request, $id)
+    {
+        $request->validate([
+            'invested_time' => 'required|integer|min:0',
+        ]);
+
+        $project = Project::findOrFail($id);
+        $project->invested_time += $request->input('invested_time');
+        $project->save();
+
+        return redirect()->route('projects.index')->with('success', 'Invested time added successfully.');
+    }
 }
