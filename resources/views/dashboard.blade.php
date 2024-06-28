@@ -38,7 +38,10 @@
             <div class="profile">
                 <img src="default_profile_picture.png" alt="Profile Picture" class="profile-picture">
                 <div class="profile-info">
-                    <h2>Name Surname</h2>
+                        @if(Auth::user()->name) <h2>{{Auth::user()->name}}</h2>
+                        @else 
+                        <h2>@lang('messages.name')</h2>
+                        @endif
                     <p>15 active tasks</p>
                     <a href="#">profile</a>
                 </div>

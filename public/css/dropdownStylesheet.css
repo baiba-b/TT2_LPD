@@ -1,14 +1,13 @@
+* {
+    color: white;
+}
 .dropbtn {
-    color: black;
     padding: 16px;
     font-size: 1em;
     border: none;
     cursor: pointer;
 }
 
-.dropdown {
-    margin-left: 90%;
-}
 
 .dropbtn:hover,
 .dropbtn:focus {

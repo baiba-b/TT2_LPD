@@ -39,15 +39,15 @@ class ConnectionSeeder extends Seeder
             ]);
         }
         DB::table('connections')->insert([
-            'user_id' => 31,
-            'connected_user_id' => 32,
+            'user_id' => 182,
+            'connected_user_id' => 183,
             'type' => 'friend',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         DB::table('connections')->insert([
-            'user_id' => 32,
-            'connected_user_id' => 31,
+            'user_id' => 183,
+            'connected_user_id' => 182,
             'type' => 'friend',
             'created_at' => now(),
             'updated_at' => now(),

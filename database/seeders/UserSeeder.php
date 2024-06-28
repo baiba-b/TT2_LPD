@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             User::create([
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
-                'password' => Hash::make('password'), // You can set a default password
+                'password' => Hash::make('password'),
             ]);
         }
         User::create([

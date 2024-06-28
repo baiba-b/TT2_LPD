@@ -36,7 +36,7 @@
     <div class="mt-4">
         <h3>Current Profile Picture</h3>
         @if(Auth::user()->profile_picture)
-            <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture" style="width: 150px; height: 150px; border-radius: 50%;">
+            <img src="{{ asset('storage/app/' . Auth::user()->profile_picture) }}" alt="Profile Picture" style="width: 150px; height: 150px; border-radius: 50%;">
         @else
             <img src="{{ asset('default_profile_picture.png') }}" alt="Default Profile Picture" style="width: 150px; height: 150px; border-radius: 50%;">
         @endif
