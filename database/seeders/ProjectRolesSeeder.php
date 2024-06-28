@@ -17,6 +17,7 @@ class ProjectRolesSeeder extends Seeder
             ['id' => 1, 'name' => 'Creator', 'read' => true, 'write' => true, 'mark_complete' => true, 'update' => true, 'created_at' => now(), 'updated_at' => now()],
             ['id' => 2, 'name' => 'Manager', 'read' => true, 'write' => true, 'mark_complete' => true, 'update' => true, 'created_at' => now(), 'updated_at' => now()],
             ['id' => 3, 'name' => 'Member', 'read' => true, 'write' => true, 'mark_complete' => false, 'update' => false, 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 4, 'name' => 'Worker', 'read' => true, 'write' => false, 'mark_complete' => false, 'update' => false, 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }

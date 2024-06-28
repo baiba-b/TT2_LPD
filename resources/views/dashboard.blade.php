@@ -33,6 +33,156 @@
 
         </ul>
     </nav>
+    <main class="dashboard">
+        <section class="left-panel">
+            <div class="profile">
+                <img src="default_profile_picture.png" alt="Profile Picture" class="profile-picture">
+                <div class="profile-info">
+                    <h2>Name Surname</h2>
+                    <p>15 active tasks</p>
+                    <a href="#">profile</a>
+                </div>
+            </div>
+            <div class="section most-urgent-tasks">
+                <h3>Most urgent tasks</h3>
+                <div class="task-card">
+                    <div class="task-color" style="background-color: #9acd32;"></div>
+                    <div class="task-info">
+                        <h4>Task1</h4>
+                        <p>Workload: 16h</p>
+                        <p>Due in 2 days</p>
+                        <p>54% done</p>
+                    </div>
+                </div>
+                <div class="task-card">
+                    <div class="task-color" style="background-color: #ff00ff;"></div>
+                    <div class="task-info">
+                        <h4>Task2</h4>
+                        <p>Workload: 1h</p>
+                        <p>Due in 12h</p>
+                        <p>0% done</p>
+                        <p>Collaborators: Aa, Bb</p>
+                    </div>
+                </div>
+                <div class="task-card">
+                    <div class="task-color" style="background-color: #ffff00;"></div>
+                    <div class="task-info">
+                        <h4>Task3</h4>
+                        <p>Workload: 15min</p>
+                        <p>Due in 1.5h</p>
+                        <p>54% done</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section updates">
+                <h3>Updates</h3>
+                <div class="update-card">
+                    <div class="task-color" style="background-color: #008b8b;"></div>
+                    <div class="task-info">
+                        <h4>Project1</h4>
+                        <p>Workload: 16 days</p>
+                        <p>54% done</p>
+                        <p>Completed task: ProjectTask1</p>
+                        <p>Cc</p>
+                    </div>
+                </div>
+                <div class="update-card">
+                    <div class="task-color" style="background-color: #b8860b;"></div>
+                    <div class="task-info">
+                        <h4>Project2</h4>
+                        <p>Workload: 130 days</p>
+                        <p>12% done</p>
+                        <p>Updated description of ProjectTask2</p>
+                        <p>Dd</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="center-panel">
+            <h3>Main project</h3>
+            <div class="main-project">
+                <h4>Project3</h4>
+                <p>Workload: 13 days</p>
+                <p>90% done</p>
+            </div>
+            <div class="section active-tasks">
+                <h3>Active project tasks</h3>
+                <div class="task-card">
+                    <div class="task-color" style="background-color: #ff6347;"></div>
+                    <div class="task-info">
+                        <h4>Task1</h4>
+                        <p>Workload: 1h</p>
+                        <p>4% done</p>
+                        <p>Due in 2 days</p>
+                        <p>Assigned to: Aa</p>
+                    </div>
+                </div>
+                <div class="task-card">
+                    <div class="task-color" style="background-color: #9acd32;"></div>
+                    <div class="task-info">
+                        <h4>Task2</h4>
+                        <p>Workload: 12h</p>
+                        <p>78% done</p>
+                        <p>Due in 5h</p>
+                        <p>Assigned to: Cc</p>
+                    </div>
+                </div>
+                <div class="task-card">
+                    <div class="task-color" style="background-color: #ff4500;"></div>
+                    <div class="task-info">
+                        <h4>Task3</h4>
+                        <p>Workload: 30min</p>
+                        <p>50% done</p>
+                        <p>Due in 12 days</p>
+                        <p>Assigned to: You</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section completed-tasks">
+                <h3>Completed</h3>
+                <div class="task-card">
+                    <div class="task-color" style="background-color: #20b2aa;"></div>
+                    <div class="task-info">
+                        <h4>Task4</h4>
+                        <p>Assigned to: Cc</p>
+                    </div>
+                </div>
+                <div class="task-card">
+                    <div class="task-color" style="background-color: #32cd32;"></div>
+                    <div class="task-info">
+                        <h4>Task5</h4>
+                        <p>Assigned to: You</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="right-panel">
+            <div class="actions">
+                <h3>Create task</h3>
+                <h3>Create project</h3>
+                <h3>Settings</h3>
+            </div>
+            <div class="section friend-activity">
+                <h3>Friend activity</h3>
+                <div class="friend-card">
+                    <img src="default_profile_picture.png" alt="Friend Profile Picture" class="friend-picture">
+                    <div class="friend-info">
+                        <p>Bb</p>
+                        <p>Completed task: HisTask1</p>
+                    </div>
+                </div>
+                <div class="friend-card">
+                    <img src="default_profile_picture.png" alt="Friend Profile Picture" class="friend-picture">
+                    <div class="friend-info">
+                        <p>Aa</p>
+                        <p>Created new task: HerTask1</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
+
+</html>
 
 </html>

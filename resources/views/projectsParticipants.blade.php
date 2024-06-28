@@ -33,7 +33,6 @@
         <div class="user-management">
             <h2>User Management</h2>
             <div class="toolbar">
-                <input type="text" placeholder="Search User">
                 <button class="add-user-btn">Add User</button>
             </div>
             <table>
@@ -46,7 +45,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($participants as $participant)
+                @foreach($users as $user)
                     <tr>
                         <td><input type="checkbox"></td>
                         <td>
@@ -63,7 +62,7 @@
                             </div>
                         </td>
                         <td>
-                            <span class="role">{{ $participant->role->name }}</span>
+                            <span class="role">{{$user->projectRoles->where('pivot.project_id', $project->id)->first()->name}}</span>
                         </td>
                         <td>
                             <button class="action-btn modify">Modify Roles</button>

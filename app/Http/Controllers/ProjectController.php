@@ -119,9 +119,9 @@ class ProjectController extends Controller
     public function showParticipants(string $id)
     {
         $project = Project::find($id);
-        $participants = $project->users;
+        $users = $project->users;
 
-        return view('projectsParticipants', compact('project', 'participants'));
+        return view('projectsParticipants', compact('project', 'users'));
     }
 
     public function addMember($id)

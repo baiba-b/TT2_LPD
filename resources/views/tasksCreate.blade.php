@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="\css\navbarStylesheet.css">
+    <link rel="stylesheet" href="/css/createStylesheet.css">
+
 
     <title>Create Project</title>
     <script>
@@ -22,24 +24,26 @@
     </script>
 </head>
 <body>
-    <h1>Create task</h1>
+<div class="modal">
+<div class="modal-content">
+    <h2>Create task</h2>
     <form action="{{ route('tasks.store') }}" method="POST" onsubmit="calculateTotalMinutes()">
         @csrf
-        <div>
+        <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" id="name" maxlength="50" name="name" required>
         </div>
-        <div>
+        <div class="form-group">
             <label for="description">Description:</label>
             <textarea id="description" name="description"></textarea>
         </div>
-        <div>
+        <div class="form-group">
             <label for="due_date">Due Date:</label>
             <input type="date" id="due_date" name="due_date">
         </div>
-        <div>
+        <div class="form-group">
             <label>Estimated Workload:</label>
-            <div>
+            <div class="workload-inputs">
                 <label for="estimated_days">Days:</label>
                 <input type="number" id="estimated_days" name="estimated_days" min="0">
                 <label for="estimated_hours">Hours:</label>
@@ -50,7 +54,7 @@
         </div>
         <!-- Hidden input to store total minutes -->
         <input type="hidden" id="total_estimated_workload" name="estimated_workload">
-        <button type="submit">Create task</button>
+        <button type="submit" class="create-task-btn">Create task</button>
     </form>
 </body>
 </html>

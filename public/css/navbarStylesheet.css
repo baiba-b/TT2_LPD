@@ -11,7 +11,7 @@ ul{
     display: flex;        
     justify-content: center;
     z-index: 1000; 
-    background-color: white;
+    background-color: rgb(125, 185, 241);
 }
 
 li a {
@@ -32,7 +32,7 @@ li a:not(.exception)
 }
 
 li a:hover:not(.active) {
-    background-color: #bfb9b9;
+    background-color: #5a5d5f52;
     color: white;
 }
 

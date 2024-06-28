@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="\css\navbarStylesheet.css">
     <link rel="stylesheet" href="\css\dropdownStylesheet.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/createStylesheet.css">
     <title>Edit Project</title>
 </head>
 
@@ -36,7 +37,9 @@
             </ul>
     </nav>
     <main>
-        <h1>Edit Project</h1>
+         <div class="modal">
+            <div class="modal-content">
+        <h2>Edit Project</h2>
         <form action="{{ route('projects.update', $project->id) }}" method="post">
             @csrf
             @method('PUT')
@@ -58,6 +61,8 @@
             </div>
             <button type="submit">Update Project</button>
         </form>
+        </div>
+    </div>
     </main>
 </body>
 

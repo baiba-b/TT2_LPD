@@ -11,7 +11,7 @@ use App\Models\TaskRole;
 class Task extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'description','estimated_workload','invested_time','due_date','projectID', 'creator_id'];
+    protected $fillable = ['name', 'description','estimated_workload','invested_time','due_date','project_id', 'creator_id'];
 
     public function project()
     {
@@ -20,15 +20,15 @@ class Task extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'task_user', 'taskID', 'userID')
-                    ->withPivot('roleID')
+        return $this->belongsToMany(User::class, 'task_user', 'task_id', 'role_id')
+                    ->withPivot('role_id')
                     ->withTimestamps();
     }
 
     public function roles()
     {
-        return $this->belongsToMany(TaskRole::class, 'task_user', 'taskID', 'roleID')
-                    ->withPivot('userID')
+        return $this->belongsToMany(TaskRole::class, 'task_user', 'task_id', 'role_id')
+                    ->withPivot('user_id')
                     ->withTimestamps();
     }
 

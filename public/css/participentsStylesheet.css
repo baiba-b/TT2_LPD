@@ -64,14 +64,8 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-}
-
-.toolbar input[type="text"] {
-    padding: 8px 10px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    width: 200px;
+    margin-bottom: 1%;
+    margin-top: 1%;
 }
 
 .add-user-btn {
@@ -141,6 +135,7 @@ tbody td {
     border-radius: 20px;
     color: #fff;
     font-size: 12px;
+    background-color: #3d28a7;
 }
 
 .role.creator {
