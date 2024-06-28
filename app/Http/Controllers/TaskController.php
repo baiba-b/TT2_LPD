@@ -135,5 +135,17 @@ class TaskController extends Controller
 
         return redirect()->route('tasks.show', $task)->with('success', 'Member added successfully.');
     }
+    public function addInvestedTime(Request $request, $id)
+    {
+        $request->validate([
+            'invested_time' => 'required|integer|min:0',
+        ]);
+
+        $task = Task::findOrFail($id);
+        $task->invested_time += $request->input('invested_time');
+        $task->save();
+
+        return redirect()->route('tasks.index')->with('success', 'Invested time added successfully.');
+    }
 
 }

@@ -205,3 +205,39 @@ h2 {
     max-width:100%;
     overflow-wrap:break-word;
 }
+
+.invested-time-form {
+    margin-top: 10px;
+    text-align: left;
+}
+
+.invested-time-form .form-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.invested-time-form label {
+    font-size: 0.9em;
+    margin-right: 10px;
+}
+
+.invested-time-form input {
+    width: 60%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-invested-time-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #008cba;
+    color: white;
+    cursor: pointer;
+}
+
+.add-invested-time-btn:hover {
+    background-color: #005f5f;
+}

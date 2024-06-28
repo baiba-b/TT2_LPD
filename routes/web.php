@@ -77,3 +77,4 @@ Route::get('projects/{project}/add-member', [ProjectController::class, 'addMembe
 Route::post('projects/{project}/store-member', [ProjectController::class, 'storeMember'])->name('projects.storeMember');
 Route::get('tasks/{task}/add-member', [TaskController::class, 'addMember'])->name('tasks.addMember');
 Route::post('tasks/{task}/store-member', [TaskController::class, 'storeMember'])->name('tasks.storeMember');
+Route::post('/tasks/{task}/add-invested-time', [TaskController::class, 'addInvestedTime'])->name('tasks.addInvestedTime');

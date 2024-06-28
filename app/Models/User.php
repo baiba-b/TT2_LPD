@@ -109,4 +109,8 @@ class User extends Authenticatable
     {
         return $this->projectRoles()->where('name', $roleName)->wherePivot('project_id', $projectId)->exists();
     }
+    public function hasTaskRole($roleName, $taskId)
+    {
+        return $this->taskRoles()->where('name', $roleName)->wherePivot('task_id', $taskId)->exists();
+    }
 }
