@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\ProjectRole;
 use App\Models\User;
 use App\Models\Connection;
+use Illuminate\Support\Str;
 
 use Carbon\Carbon;
 
@@ -129,26 +131,20 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
 
-        // // Get IDs of users connected to the authenticated user
-        // $connectedUserIds = Connection::where('user_id', Auth::id())
-        //                               ->orWhere('connected_user_id', Auth::id())
-        //                               ->pluck('user_id')
-        //                               ->merge(Connection::where('connected_user_id', Auth::id())
-        //                                                  ->pluck('connected_user_id'))
-        //                               ->unique()
-        //                               ->toArray();
-    
-        // // Fetch users based on connected IDs
-        // $users = User::whereIn('id', $connectedUserIds)->get();
-    
-        return view('projects.addMember', compact('project', 'users'));
+        // Get IDs of users connected to the authenticated user
+        $project = Project::findOrFail($id);
+        $users = User::all(); // Get all users or filter as necessary
+        $roles = ProjectRole::where('id', '!=', 1)->get();
+        return view('projectsAddMember', compact('project', 'users', 'roles'));
     }
 
     public function storeMember(Request $request, $id)
     {
         $project = Project::findOrFail($id);
-        $user = User::findOrFail($request->user_id);
-        $project->users()->attach($user, ['role_id' => $request->role_id]);
+        $user = User::findOrFail($request->user_id); // Find the user by the provided user ID
+
+        // Attach the user to the project with the selected role
+        $project->users()->attach($user->id, ['role_id' => $request->role_id]);
 
         return redirect()->route('projects.show', $project)->with('success', 'Member added successfully.');
     }
