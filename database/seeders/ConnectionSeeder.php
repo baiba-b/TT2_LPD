@@ -32,7 +32,7 @@ class ConnectionSeeder extends Seeder
             // Insert the connection
             DB::table('connections')->insert([
                 'user_id' => $user_id,
-                'connected_userID' => $connected_userID,
+                'connected_user_id' => $connected_userID,
                 'type' => $types[array_rand($types)],
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -40,14 +40,14 @@ class ConnectionSeeder extends Seeder
         }
         DB::table('connections')->insert([
             'user_id' => 31,
-            'connected_userID' => 32,
+            'connected_user_id' => 32,
             'type' => 'friend',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         DB::table('connections')->insert([
             'user_id' => 32,
-            'connected_userID' => 31,
+            'connected_user_id' => 31,
             'type' => 'friend',
             'created_at' => now(),
             'updated_at' => now(),

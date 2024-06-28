@@ -12,6 +12,7 @@ use App\Http\Controllers\TaskRoleController;
 use App\Http\Controllers\ConnectionController;
 use App\Http\Controllers\CommunicationsController;
 use App\Http\Controllers\LocaleController;
+use App\Http\Controllers\MessageController;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -36,10 +37,11 @@ Route::redirect('/home', '/homepage');
 Route::get('/homepage', function () {
     return view('homepage');
 });
+Route::post('/messages/{user}', [MessageController::class, 'store'])->name('messages.store');
 
 Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::put('/profile/update-picture', [ProfileController::class, 'updateProfilePicture'])->name('profile.update_picture');
-
+Route::get('/messages/{user}', [MessageController::class, 'show'])->name('messages.show');
 Route::get('locale/{lang}',[LocaleController::class, 'setLocale']);
 // Resource routes
 Route::resource('users', UserController::class);

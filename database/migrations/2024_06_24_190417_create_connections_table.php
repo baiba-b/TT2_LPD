@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('connections', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('connected_userID')->constrained('users')->onDelete('cascade');
-            $table->string('status', 10);
+            $table->foreignId('connected_user_id')->constrained('users')->onDelete('cascade');
             $table->string('type', 40);
             $table->timestamps();
         });

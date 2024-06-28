@@ -12,12 +12,14 @@ class ConnectionController extends Controller
     public function index()
     {
         $user = Auth::user();
-
+        if (!$user) {
+            return redirect()->route('login')->withErrors('You must be logged in to view your connections.');
+        }
         // Get connections where the user is either user_id or connected_userID
         $connections = $user->connections()->get();
-        $connectedBy = $user->connectedTo()->get();
-
-        return view('connections', compact('connections', 'connectedBy'));
+        $connectedTo = $user->connectedTo()->get();
+        $mutualConnections = $connections->intersect($connectedTo);
+        return view('connections', compact('mutualConnections', 'connections', 'connectedTo'));
     }
 
     /**

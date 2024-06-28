@@ -23,5 +23,15 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'), // You can set a default password
             ]);
         }
+        User::create([
+            'name' => 'Ēriks',
+            'email' => 'eriks.kralliss@gmail.com',
+            'password' => Hash::make('ek23082'), 
+        ]);
+        User::create([
+            'name' => 'Baiba',
+            'email' => 'baibina.berzina@gmail.com',
+            'password' => Hash::make('bb23028'), 
+        ]);
     }
 }

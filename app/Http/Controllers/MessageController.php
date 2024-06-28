@@ -37,8 +37,8 @@ class MessageController extends Controller
 {
     $currentUser = Auth::user();
     $connections = $currentUser->connections()->get();
-    $connectedBy = $currentUser->connectedTo()->get();
-    $mutualConnections = $connections->intersect($connectedBy);
+    $connectedTo = $currentUser->connectedTo()->get();
+    $mutualConnections = $connections->intersect($connectedTo);
 
     if (!$mutualConnections->contains($user)) {
         return redirect()->route('connections.index')->withErrors('You can only message mutually connected users.');

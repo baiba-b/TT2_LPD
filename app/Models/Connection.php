@@ -9,7 +9,7 @@ use App\Models\User;
 class Connection extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id','connected_userID','status','type'];
+    protected $fillable = ['user_id','connected_user_id','type'];
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
@@ -17,7 +17,7 @@ class Connection extends Model
 
     public function connectedUser()
     {
-        return $this->belongsTo(User::class, 'connected_userID', 'id');
+        return $this->belongsTo(User::class, 'connected_user_id', 'id');
     }
 
 }

@@ -14,10 +14,10 @@ class CommunicationsController extends Controller
         $user = Auth::user();
 
         // Get connections where the user is either user_id or connected_userID
-        $connections = $user->connections()->wherePivot('status', 'accepted')->get();
-        $connectedBy = $user->connectedBy()->wherePivot('status', 'accepted')->get();
+        $connections = $user->connections()->get();
+        $connectedTo = $user->connectedTo()->get();
 
-        return view('connections.index', compact('connections', 'connectedBy'));
+        return view('connections', compact('connections', 'connectedTo'));
     }
 
     /**
