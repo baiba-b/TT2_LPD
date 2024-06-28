@@ -33,6 +33,8 @@ Route::get('/', function () {
 
 Route::redirect('/', '/homepage');
 Route::redirect('/dash', '/dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 Route::redirect('/home', '/homepage');
 Route::get('/homepage', function () {
     return view('homepage');
