@@ -59,7 +59,7 @@
                                     <i class="material-icons" style="font-size: 1.1em;" id="deleteI">delete</i> Delete
                                 </button>
                             </form>
-                            <a href="{{ route('tasks.edit', $task->id) }}">
+                            <a href="{{ route('tasks.participants', $task->id) }}">
                                 <i class="material-icons" style="font-size: 1.1em;">group</i> Manage group
                             </a>
                         </div>

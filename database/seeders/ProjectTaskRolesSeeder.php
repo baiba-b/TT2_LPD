@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class ProjectTaskRolesSeeder extends Seeder
 {
@@ -21,9 +22,33 @@ class ProjectTaskRolesSeeder extends Seeder
         ]);
          // Task roles
          DB::table('task_roles')->insert([
-            ['role_name' => 'Admin', 'read' => true, 'write' => true, 'update' => true, 'notify' => true],
-            ['role_name' => 'Editor', 'read' => true, 'write' => true, 'update' => true, 'notify' => false],
-            ['role_name' => 'Viewer', 'read' => true, 'write' => false, 'update' => false, 'notify' => false],
+            [
+                'name' => 'Creator', 
+                'read' => true, 
+                'write' => true, 
+                'mark_complete' => true, 
+                'update' => true, 
+                'created_at' => Carbon::now(), 
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'name' => 'Manager', 
+                'read' => true, 
+                'write' => true, 
+                'mark_complete' => false, 
+                'update' => true, 
+                'created_at' => Carbon::now(), 
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'name' => 'Viewer', 
+                'read' => true, 
+                'write' => false, 
+                'mark_complete' => false, 
+                'update' => false, 
+                'created_at' => Carbon::now(), 
+                'updated_at' => Carbon::now()
+            ],
         ]);
     }
 }

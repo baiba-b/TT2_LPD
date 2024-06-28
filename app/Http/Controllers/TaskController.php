@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\TaskRole;
+use App\Models\User;
 use Illuminate\Support\Facades\Log;
 
 class TaskController extends Controller
@@ -44,6 +46,8 @@ class TaskController extends Controller
         $task->estimated_workload = $request->input('estimated_workload');
         $task->creator_id = auth()->id(); 
         $task->save();
+
+        $task->users()->attach(auth()->id(), ['user_id' => auth()->id(), 'role_id' => 1]);        
         return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
     }
 
@@ -102,4 +106,32 @@ class TaskController extends Controller
         return redirect()->route('tasks.index');
     
     }
+    public function showParticipants(string $id)
+    {
+        $task = Task::find($id);
+        $users = $task->users;
+        return view('tasksParticipants', compact('task', 'users'));
+    }
+    public function addMember($id)
+    {
+        $task = task::findOrFail($id);
+
+        // Get IDs of users connected to the authenticated user
+        $task = task::findOrFail($id);
+        $users = User::all(); // Get all users or filter as necessary
+        $roles = taskRole::where('id', '!=', 1)->get();
+        return view('tasksAddMember', compact('task', 'users', 'roles'));
+    }
+
+    public function storeMember(Request $request, $id)
+    {
+        $task = task::findOrFail($id);
+        $user = User::findOrFail($request->user_id); // Find the user by the provided user ID
+
+        // Attach the user to the task with the selected role
+        $task->users()->attach($user->id, ['role_id' => $request->role_id]);
+
+        return redirect()->route('tasks.show', $task)->with('success', 'Member added successfully.');
+    }
+
 }
