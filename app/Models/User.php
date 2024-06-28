@@ -12,12 +12,12 @@ use App\Models\ProjectRole;
 use App\Models\TaskRole;
 use App\Models\Notification;
 use App\Models\Message;
-
-
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
+
 
     protected $fillable = [
         'name',
@@ -105,5 +105,9 @@ class User extends Authenticatable
     public function projectsCreator()
     {
         return $this->hasMany(Project::class, 'creator_id');
+    }
+    public function hasProjectRole($roleName, $projectId)
+    {
+        return $this->projectRoles()->where('name', $roleName)->wherePivot('project_id', $projectId)->exists();
     }
 }

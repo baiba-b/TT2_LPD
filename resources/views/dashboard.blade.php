@@ -37,10 +37,10 @@
             <div class="profile">
                 <img src="default_profile_picture.png" alt="Profile Picture" class="profile-picture">
                 <div class="profile-info">
-                        @if(Auth::user()->name) <h2>{{Auth::user()->name}}</h2>
-                        @else 
-                        <h2>@lang('messages.name')</h2>
-                        @endif
+                    @if(Auth::user()->name) <h2>{{Auth::user()->name}}</h2>
+                    @else
+                    <h2>@lang('messages.name')</h2>
+                    @endif
                     <p>15 @lang('messages.act') @lang('messages.tasks')</p>
                     <a href="#">@lang('messages.profile')</a>
                 </div>
@@ -52,21 +52,27 @@
                     <div class="task-color" style="background-color: {{ $topProject->random_color;}}"></div>
                     <div class="task-info">
                         <h4>{{$topProject->name }}</h4>
-                        <p>@lang('messages.workload'): {{ $topProject->estimated_workload}}  @lang('messages.h')</p>
+                        <p>@lang('messages.workload'): {{ $topProject->estimated_workload}} @lang('messages.h')</p>
                         @php
                         $deadline = $topProject->due_date ? new \DateTime($topProject->due_date) : null;
-                    $now = new \DateTime();
-                    $class = 'no-deadline';
-                    $daysUntilDeadline = 'N/A';
+                        $now = new \DateTime();
+                        $class = 'no-deadline';
+                        $daysUntilDeadline = 'N/A';
 
-                    if ($deadline){
-                    $interval = $now->diff($deadline);
-                    $daysUntilDeadline = (int)$interval->format('%R%a');}
+                        if ($deadline){
+                        $interval = $now->diff($deadline);
+                        $daysUntilDeadline = (int)$interval->format('%R%a');}
 
                         @endphp
 
                         <p>@lang('messages.due') {{$daysUntilDeadline}} @lang('messages.d')</p>
-                        <p>{{floor($topProject->invested_time/$topProject->estimated_workload)}}% @lang('messages.done')</p>
+                       
+                            @if($topProject->estimated_workload > 0)
+                        <p>{{ floor($topProject->invested_time / $topProject->estimated_workload * 100) }}% @lang('messages.done')</p>
+                        @else
+                        <p>0% @lang('messages.done')</p>
+                        @endif
+                
                     </div>
                 </div>
                 @endforeach
@@ -155,9 +161,15 @@
         </section>
         <section class="right-panel">
             <div class="actions">
-                <a href="{{ route('tasks.create') }}"><h3>@lang('messages.create') @lang('messages.task')</h3></a>
-                <a href="{{ route('projects.create') }}"><h3>@lang('messages.create') @lang('messages.proj')</h3></a>
-                <a href="{{ route('profile.edit') }}"><h3>@lang('messages.settings')</h3></a>
+                <a href="{{ route('tasks.create') }}">
+                    <h3>@lang('messages.create') @lang('messages.task')</h3>
+                </a>
+                <a href="{{ route('projects.create') }}">
+                    <h3>@lang('messages.create') @lang('messages.proj')</h3>
+                </a>
+                <a href="{{ route('profile.edit') }}">
+                    <h3>@lang('messages.settings')</h3>
+                </a>
             </div>
             <div class="section friend-activity">
                 <h3>@lang('messages.friend') @lang('messages.acty')</h3>
