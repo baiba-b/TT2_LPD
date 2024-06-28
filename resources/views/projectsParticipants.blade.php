@@ -53,7 +53,7 @@
                             @if(Auth::user()->profile_picture)
                         <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture" class="exception" style="width: 50px; height: 50px;">
                         @else
-                        <img src="{{ asset('default_profile_picture.png') }}" alt="Default Profile Picture" class="exception" style="width: 50px; height: 50px;">
+                        <img src="{{ asset('/images/default_profile_picture.png') }}" alt="Default Profile Picture" class="exception" style="width: 50px; height: 50px;">
                         @endif
                                 <div>
                                     <p>{{Auth::user()->name}}</p>

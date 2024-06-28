@@ -74,3 +74,5 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () { 
     Route::resource('projects', ProjectController::class);
 });
+Route::get('projects/{project}/add-member', [ProjectController::class, 'addMember'])->name('projects.addMember');
+Route::post('projects/{project}/store-member', [ProjectController::class, 'storeMember'])->name('projects.storeMember');

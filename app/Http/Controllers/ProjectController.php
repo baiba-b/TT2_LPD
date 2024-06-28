@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\User;
+use App\Models\Connection;
 
 use Carbon\Carbon;
 
@@ -127,8 +128,19 @@ class ProjectController extends Controller
     public function addMember($id)
     {
         $project = Project::findOrFail($id);
-        $users = User::all(); // Get all users or filter as necessary
 
+        // // Get IDs of users connected to the authenticated user
+        // $connectedUserIds = Connection::where('user_id', Auth::id())
+        //                               ->orWhere('connected_user_id', Auth::id())
+        //                               ->pluck('user_id')
+        //                               ->merge(Connection::where('connected_user_id', Auth::id())
+        //                                                  ->pluck('connected_user_id'))
+        //                               ->unique()
+        //                               ->toArray();
+    
+        // // Fetch users based on connected IDs
+        // $users = User::whereIn('id', $connectedUserIds)->get();
+    
         return view('projects.addMember', compact('project', 'users'));
     }
 
