@@ -33,109 +33,73 @@
     <main>
         @php
         function formatMinutes($minutes) {
-            if (!is_numeric($minutes) || $minutes < 0) {
-                return 'Invalid input: minutes cannot be negative or non-numeric';
-            }
-            $days = floor($minutes / 1440);
-            $hours = floor(($minutes % 1440) / 60);
-            $remainingMinutes = $minutes % 60;
-            return sprintf('%d d %02d h %02d m', $days, $days==1 ? '' : 's', $hours, $hours==1 ? '' : 's', $remainingMinutes, $remainingMinutes==1 ? '' : 's');
-        }
-        @endphp
-
-        @php
-        $now = new \DateTime();
-        $upcomingProjectsCount = 0;
-        $missedDeadlinesCount = 0;
-        @endphp
-
-        @foreach ($projects as $project)
-        @php
-        $deadline = $project->due_date ? new \DateTime($project->due_date) : null;
-        if ($deadline) {
+        if (!is_numeric($minutes) || $minutes < 0) { return 'Invalid input: minutes cannot be negative or non-numeric' ; } $days=floor($minutes / 1440); $hours=floor(($minutes % 1440) / 60); $remainingMinutes=$minutes % 60; return sprintf('%d d %02d h %02d m', $days, $days==1 ? '' : 's' , $hours, $hours==1 ? '' : 's' , $remainingMinutes, $remainingMinutes==1 ? '' : 's' ); } @endphp @php $now=new \DateTime(); $upcomingProjectsCount=0; $missedDeadlinesCount=0; @endphp @foreach ($projects as $project) @php $deadline=$project->due_date ? new \DateTime($project->due_date) : null;
+            if ($deadline) {
             $interval = $now->diff($deadline);
             $daysUntilDeadline = (int)$interval->format('%R%a');
 
-            if ($daysUntilDeadline < 0) {
-                $missedDeadlinesCount++;
-            } elseif ($daysUntilDeadline <= 7) {
-                $upcomingProjectsCount++;
-            }
-        }
-        @endphp
-        @endforeach
+            if ($daysUntilDeadline < 0) { $missedDeadlinesCount++; } elseif ($daysUntilDeadline <=7) { $upcomingProjectsCount++; } } @endphp @endforeach <h1>Projects</h1>
+                <h2>Upcoming: {{ $upcomingProjectsCount }}</h2>
+                <h2>Missed deadlines: {{ $missedDeadlinesCount }}</h2>
+                <h2>Total: {{ $projectsCount }}</h2>
+                <a class="button" href="{{ route('projects.create') }}">
+                    <i class="material-icons" id="add" style="font-size: 1.5rem;">add_circle</i>New Project
+                </a>
 
-        <h1>Projects</h1>
-        <h2>Upcoming: {{ $upcomingProjectsCount }}</h2>
-        <h2>Missed deadlines: {{ $missedDeadlinesCount }}</h2>
-        <h2>Total: {{ $projectsCount }}</h2>
-        <a class="button" href="{{ route('projects.create') }}">
-            <i class="material-icons" id="add" style="font-size: 1.5rem;">add_circle</i>New Project
-        </a>
+                <div class="projects-container">
+                    @foreach ($projects as $project)
+                    @php
+                    $deadline = $project->due_date ? new \DateTime($project->due_date) : null;
+                    $now = new \DateTime();
+                    $class = 'no-deadline';
+                    $daysUntilDeadline = 'N/A';
 
-        <div class="projects-container">
-            @foreach ($projects as $project)
-            @php
-            $deadline = $project->due_date ? new \DateTime($project->due_date) : null;
-            $now = new \DateTime();
-            $class = 'no-deadline';
-            $daysUntilDeadline = 'N/A';
+                    if ($deadline) {
+                    $interval = $now->diff($deadline);
+                    $daysUntilDeadline = (int)$interval->format('%R%a');
 
-            if ($deadline) {
-                $interval = $now->diff($deadline);
-                $daysUntilDeadline = (int)$interval->format('%R%a');
+                    if ($daysUntilDeadline < 0) { $class='deadline-past' ; } elseif ($daysUntilDeadline <=7) { $class='deadline-soon' ; } else { $class='deadline-far' ; } } @endphp <div class="project_box {{ $class }}">
+                        <div class="dropdown" style="float:right;">
+                            <a class="dropbtn"><i class="material-icons" style="font-size: 1.5em;">more_vert</i></a>
+                            <div class="dropdown-content">
+                                @can('update-project', $project)
+                                <a href="{{ route('projects.edit', $project->id) }}">
+                                    <i class="material-icons" style="font-size: 1.1em;">edit</i> Edit
+                                </a>
+                                @endcan
+                                @can('update-project', $project)
+                                <form method="POST" action="{{ route('projects.destroy', $project->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="dropbtn" id="delete">
+                                        <i class="material-icons" style="font-size: 1.1em;" id="deleteI">delete</i> Delete
+                                    </button>
+                                </form>
+                                @endcan
 
-                if ($daysUntilDeadline < 0) {
-                    $class = 'deadline-past';
-                } elseif ($daysUntilDeadline <= 7) {
-                    $class = 'deadline-soon';
-                } else {
-                    $class = 'deadline-far';
-                }
-            }
-            @endphp
-            <div class="project_box {{ $class }}">
-                <div class="dropdown" style="float:right;">
-                    <a class="dropbtn"><i class="material-icons" style="font-size: 1.5em;">more_vert</i></a>
-                    <div class="dropdown-content">
-                        @can('update-project', $project)
-                        <a href="{{ route('projects.edit', $project->id) }}">
-                            <i class="material-icons" style="font-size: 1.1em;">edit</i> Edit
-                        </a>
-                        @endcan
-                        @can('update-project', $project)
-                        <form method="POST" action="{{ route('projects.destroy', $project->id) }}">
+                                <a href="{{ route('projects.participants', $project->id) }}">
+                                    <i class="material-icons" style="font-size: 1.1em;">group</i> Manage group
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="project_text">{{ $project->name }}</h3>
+                        <p class="project_due_date">{{ $project->due_date ?? 'No due date set' }}</p>
+                        <p class="project_days_left">{{ $daysUntilDeadline }} days left</p>
+                        <p class="project_estimated_workload">Estimated Workload:</p>
+                        <p>{{ formatMinutes($project->estimated_workload) }}</p>
+                        <a class="buttonView" href="{{ route('projects.show', ['project' => $project->id]) }}">View Project</a>
+
+                        <form action="{{ route('projects.addInvestedTime', ['project' => $project->id]) }}" method="POST">
                             @csrf
-                            @method('DELETE')
-                            <button type="submit" class="dropbtn" id="delete">
-                                <i class="material-icons" style="font-size: 1.1em;" id="deleteI">delete</i> Delete
-                            </button>
+                            <div class="form-group">
+                                <label for="invested_time_{{ $project->id }}">Add Invested Time:</label>
+                                <input type="number" name="invested_time" id="invested_time_{{ $project->id }}" min="0" placeholder="Minutes">
+                                <button type="submit" class="add-invested-time-btn">Add Time</button>
+                            </div>
                         </form>
-                        @endcan
-
-                        <a href="{{ route('projects.participants', $project->id) }}">
-                            <i class="material-icons" style="font-size: 1.1em;">group</i> Manage group
-                        </a>
-                    </div>
                 </div>
-                <h3 class="project_text">{{ $project->name }}</h3>
-                <p class="project_due_date">{{ $project->due_date ?? 'No due date set' }}</p>
-                <p class="project_days_left">{{ $daysUntilDeadline }} days left</p>
-                <p class="project_estimated_workload">Estimated Workload:</p>
-                <p>{{ formatMinutes($project->estimated_workload) }}</p>
-                <a class="buttonView" href="{{ route('projects.show', ['project' => $project->id]) }}">View Project</a>
-
-                <form method="POST" action="{{ route('projects.addInvestedTime', $project->id) }}" class="invested-time-form">
-                    @csrf
-                    <div class="form-group">
-                        <label for="invested_time_{{ $project->id }}">Add Invested Time:</label>
-                        <input type="number" name="invested_time" id="invested_time_{{ $project->id }}" min="0" placeholder="Minutes">
-                        <button type="submit" class="add-invested-time-btn">Add Time</button>
-                    </div>
-                </form>
-            </div>
-            @endforeach
-        </div>
+                @endforeach
+                </div>
     </main>
 </body>
 

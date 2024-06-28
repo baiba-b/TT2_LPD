@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\Task;
+
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -12,7 +14,8 @@ class DashboardController extends Controller
     public function index()
     {
         $projects = Project::all();
-      ;
+        $authUser = auth()->user();
+      
         // Calculate remaining time and workload ratio for each project
         $projects = $projects->map(function ($project) {
              $now = Carbon::now();
@@ -26,7 +29,10 @@ class DashboardController extends Controller
 
         // Sort the projects by workload ratio in ascending order and get the top 5
         $topProjects = $projects->sortByDesc('workload_ratio')->take(5);
-
-        return view('dashboard', ['topProjects' => $topProjects]);
+        $taskCount = \App\Models\Task::whereHas('users', function ($query) use ($authUser) {
+            $query->where('user_id', $authUser->id);
+        })->count();
+    
+        return view('dashboard', ['topProjects' => $topProjects, 'taskCount' => $taskCount]);
     }
 }

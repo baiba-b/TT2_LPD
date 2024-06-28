@@ -40,7 +40,7 @@
             <p>{{ $project->description }}</p>
             <p>Due Date: {{ $project->due_date }}</p>
             <p>Estimated Workload: {{ formatMinutes($project->estimated_workload) }}</p>
-            <p>Invested time: {{ formatMinutes($project->invested_time) }}</p>
+            <p>Invested time: {{ intdiv($project->invested_time, 60) }} hours {{ $project->invested_time % 60 }} minutes</p>
             <p>Creator: {{ $project->creator->name ?? 'Unknown' }}</p>
             <p>Last updated: {{ $project->updated_at}}</p>
         </main>

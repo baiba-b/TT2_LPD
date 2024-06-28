@@ -7,6 +7,7 @@ use App\Models\Task;
 use App\Models\TaskRole;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Gate;
 
 class TaskController extends Controller
 {
@@ -56,7 +57,11 @@ class TaskController extends Controller
      */
     public function show(string $id)
     {
+        
         $task = Task::with('creator')->findOrFail($id);
+        if (Gate::denies('view-task', $task)) {
+            abort(403, 'Unauthorized action.');
+        }
 
         return view('taskShow', compact('task'));
     }
@@ -110,6 +115,9 @@ class TaskController extends Controller
     {
         $task = Task::find($id);
         $users = $task->users;
+        if (Gate::denies('view-task', $task)) {
+            abort(403, 'Unauthorized action.');
+        }
         return view('tasksParticipants', compact('task', 'users'));
     }
     public function addMember($id)

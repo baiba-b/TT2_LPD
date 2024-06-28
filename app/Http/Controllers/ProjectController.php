@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Connection;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Gate;
 
 
 use Carbon\Carbon;
@@ -73,6 +74,9 @@ class ProjectController extends Controller
   public function show($id)
 {
      $project = Project::with('creator')->findOrFail($id);
+     if (Gate::denies('view-project', $project)) {
+        abort(403, 'Unauthorized action.');
+    }
 
         return view('projectShow', compact('project'));
 }
@@ -100,8 +104,8 @@ class ProjectController extends Controller
     
         $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'due_date' => 'required|date',
+            'description' => 'nullable|string',
+            'due_date' => 'nullable|date',
             'estimated_workload' => 'required|integer|min:0',
         ]);
     
@@ -129,7 +133,9 @@ class ProjectController extends Controller
     {
         $project = Project::find($id);
         $users = $project->users;
-
+        if (Gate::denies('view-project', $project)) {
+            abort(403, 'Unauthorized action.');
+        }
         return view('projectsParticipants', compact('project', 'users'));
     }
 
@@ -160,11 +166,11 @@ class ProjectController extends Controller
         $request->validate([
             'invested_time' => 'required|integer|min:0',
         ]);
-
+    
         $project = Project::findOrFail($id);
         $project->invested_time += $request->input('invested_time');
         $project->save();
-
+    
         return redirect()->route('projects.index')->with('success', 'Invested time added successfully.');
     }
 }

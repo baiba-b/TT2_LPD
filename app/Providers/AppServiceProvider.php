@@ -51,6 +51,14 @@ class AppServiceProvider extends ServiceProvider
             // If neither condition is met, deny access
             return false;
         });
+        Gate::define('view-project', function (User $user, Project $project) {
+            // Check if the user is associated with the project
+            return $project->users->contains($user);
+        });
+        Gate::define('view-task', function (User $user, Task $task) {
+            // Check if the user is associated with the project
+            return $task->users->contains($user);
+        });
       
     }
 }

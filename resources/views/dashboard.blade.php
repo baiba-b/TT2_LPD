@@ -40,8 +40,8 @@
                     @else
                     <h2>@lang('messages.name')</h2>
                     @endif
-                    <p>15 @lang('messages.act') @lang('messages.tasks')</p>
-                    <a href="#">@lang('messages.profile')</a>
+                    <p>{{$taskCount}} @lang('messages.act') @lang('messages.tasks')</p>
+                    <a href="{{ url('/profile') }}">@lang('messages.profile')</a>
                 </div>
             </div>
             <div class="section most-urgent-tasks">
