@@ -23,6 +23,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/connections', [ConnectionController::class, 'index'])->name('connections.index');
+    Route::post('/connections', [ConnectionController::class, 'store'])->name('connections.store');
+    Route::get('/messages/{user}', [MessageController::class, 'show'])->name('messages.show');
+    Route::post('/messages/{user}', [MessageController::class, 'store'])->name('messages.store');
 });
 
 require __DIR__.'/auth.php';
@@ -39,11 +42,9 @@ Route::redirect('/home', '/homepage');
 Route::get('/homepage', function () {
     return view('homepage');
 });
-Route::post('/messages/{user}', [MessageController::class, 'store'])->name('messages.store');
 
 Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::put('/profile/update-picture', [ProfileController::class, 'updateProfilePicture'])->name('profile.update_picture');
-Route::get('/messages/{user}', [MessageController::class, 'show'])->name('messages.show');
 Route::get('locale/{lang}',[LocaleController::class, 'setLocale']);
 // Resource routes
 Route::resource('users', UserController::class);
@@ -63,8 +64,6 @@ Route::post('projects/{project}/send-alert', [ProjectController::class, 'sendAle
 // Custom routes for notifications
 Route::post('notifications/{notification}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
 // Custom routes for connections
-Route::post('connections/{connection}/accept', [ConnectionController::class, 'acceptRequest'])->name('connections.acceptRequest');
-Route::post('connections/{connection}/reject', [ConnectionController::class, 'rejectRequest'])->name('connections.rejectRequest');
 // Custom route for sending messages
 Route::post('messages/send', [CommunicationsController::class, 'sendMessage'])->name('messages.sendMessage');
 //middleware to make sure user is authenticated before doing any actions with projects and tasks

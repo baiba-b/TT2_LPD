@@ -12,8 +12,6 @@ class CommunicationsController extends Controller
     public function index()
     {
         $user = Auth::user();
-
-        // Get connections where the user is either user_id or connected_userID
         $connections = $user->connections()->get();
         $connectedTo = $user->connectedTo()->get();
 
