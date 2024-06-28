@@ -99,10 +99,10 @@ class ProjectController extends Controller
         }
     
         $request->validate([
-            'name' => 'required|string|max:255', // Keep required if name is still mandatory
-            'description' => 'nullable|string', 
-            'due_date' => 'nullable|date',       
-            'estimated_workload' => 'nullable|integer|min:0', 
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'due_date' => 'required|date',
+            'estimated_workload' => 'required|integer|min:0',
         ]);
     
         $project->name = $request->input('name');

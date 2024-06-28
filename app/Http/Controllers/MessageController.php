@@ -19,22 +19,18 @@ class MessageController extends Controller
         $mutualConnections = $connections->intersect($connectedTo);
 
         if (!$mutualConnections->contains($user)) {
-            return redirect()->route('connections.index')->withErrors('You can only message mutually connected users.');
+            return redirect()->route('connections.index');
         }
 
         // Fetch messages between the users
         $messages = Message::where(function ($query) use ($currentUser, $user) {
-            $query->where('sender_id', $currentUser->id)
+            $query->where('user_id', $currentUser->id)
                 ->where('receiver_id', $user->id);
         })->orWhere(function ($query) use ($currentUser, $user) {
-            $query->where('sender_id', $user->id)
+            $query->where('user_id', $user->id)
                 ->where('receiver_id', $currentUser->id);
         })->get();
-        \Log::debug('Show method called', [
-            'currentUser' => $currentUser->id,
-            'user' => $user->id,
-            'messagesCount' => $messages->count(),
-        ]);
+
         return view('messages.show', compact('user', 'messages'));
     }
 
@@ -46,19 +42,15 @@ class MessageController extends Controller
     $mutualConnections = $connections->intersect($connectedTo);
 
     if (!$mutualConnections->contains($user)) {
-        return redirect()->route('connections.index')->withErrors('You can only message mutually connected users.');
+        return redirect()->route('connections.index');
     }
 
     $request->validate([
         'message' => 'required|string|max:1000',
     ]);
-    \Log::debug('Show method called', [
-        'currentUser' => $currentUser->id,
-        'user' => $user->id,
-        'messagesCount' => $messages->count(),
-    ]);
+
     Message::create([
-        'sender_id' => $currentUser->id,
+        'user_id' => $currentUser->id,
         'receiver_id' => $user->id,
         'content' => $request->message,
     ]);

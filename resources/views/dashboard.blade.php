@@ -18,7 +18,6 @@
             <li><a href="{{ route('connections.index') }}">@lang('messages.connect')</a></li>
             <li><a href="{{ route('projects.index') }}">@lang('messages.Projs')</a></li>
             <li><a href="{{ route('tasks.index') }}">@lang('messages.Tasks')</a></li>
-            <li><a href="{{url('/Timeline')}}">Timeline</a></li>
             <li>
                 <a href="{{ url('/profile') }}" id="profile-info">
                     @if(Auth::user()->profile_picture)

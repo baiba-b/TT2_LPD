@@ -15,13 +15,13 @@ class ConnectionController extends Controller
     {
         $user = Auth::user();
         if (!$user) {
-            return redirect()->route('login')->withErrors('You must be logged in to view your connections.');
+            return redirect()->route('login');
         }
         // Get connections where the user is either user_id or connected_userID
         $connections = $user->connections()->get();
         $connectedTo = $user->connectedTo()->get();
         $mutualConnections = $connections->intersect($connectedTo);
-        $allUsers = User::where('id', '!=', $user->id)->get();
+        $allUsers = User::where('id', '!=', $user->id)->orderBy('name')->get();
         return view('connections', compact('mutualConnections', 'connections', 'connectedTo', 'allUsers'));
     }
 
@@ -46,17 +46,14 @@ class ConnectionController extends Controller
         $user = Auth::user();
 
         // Check if the connection already exists
-        if (
-            $user->connections()->where('connected_userID', $request->connected_userID)->exists() ||
-            $user->connectedTo()->where('user_id', $request->connected_userID)->exists()
-        ) {
-            return redirect()->route('connections.index')->withErrors('You are already connected with this user.');
+        if ($user->connectedTo()->where('connected_userID', $request->connected_userID)->exists()) {
+            return redirect()->route('connections.index');
         }
 
         // Add the connection
         $user->connections()->attach($request->connected_userID, ['type' => $request->type]);
 
-        return redirect()->route('connections.index')->with('success', 'Connection added successfully.');
+        return redirect()->route('connections.index');
     }
 
     /**
@@ -86,8 +83,13 @@ class ConnectionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $currentUser = Auth::user();
+
+        $currentUser->connections()->detach($user->id);
+        $currentUser->connectedTo()->detach($user->id);
+
+        return redirect()->route('connections.index');
     }
 }

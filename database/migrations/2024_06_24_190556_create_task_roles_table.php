@@ -18,6 +18,7 @@ return new class extends Migration
             $table->boolean('write')->default(false);
             $table->boolean('mark_complete')->default(false);
             $table->boolean('update')->default(false);
+            
             $table->timestamps();
         });
     } 
