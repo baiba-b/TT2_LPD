@@ -14,7 +14,6 @@
     <!-- add routes in href, see welcome blade -->
     <nav>
         <ul>
-
             <li><a class="active" href="{{ route('dashboard') }}">Home</a></li>
             <li><a href="{{ route('connections.index') }}">Connections</a></li>
             <li><a href="{{ route('projects.index') }}">Projects</a></li>
@@ -44,59 +43,54 @@
                 </div>
             </div>
             <div class="section most-urgent-tasks">
-                <h3>Most urgent tasks</h3>
+                <h3>Most urgent projects</h3>
+                @foreach($topProjects as $topProject)
                 <div class="task-card">
-                    <div class="task-color" style="background-color: #9acd32;"></div>
+                    <div class="task-color" style="background-color: {{ $topProject->random_color;}}"></div>
                     <div class="task-info">
-                        <h4>Task1</h4>
-                        <p>Workload: 16h</p>
-                        <p>Due in 2 days</p>
-                        <p>54% done</p>
+                        <h4>{{$topProject->name }}</h4>
+                        <p>workload: {{ $topProject->estimated_workload}}hours</p>
+                        @php
+                        $deadline = $topProject->due_date ? new \DateTime($topProject->due_date) : null;
+                    $now = new \DateTime();
+                    $class = 'no-deadline';
+                    $daysUntilDeadline = 'N/A';
+
+                    if ($deadline){
+                    $interval = $now->diff($deadline);
+                    $daysUntilDeadline = (int)$interval->format('%R%a');}
+
+                        @endphp
+
+                        <p>Due in {{$daysUntilDeadline}} days</p>
+                        <p>{{floor($topProject->invested_time/$topProject->estimated_workload)}}% done</p>
                     </div>
                 </div>
-                <div class="task-card">
-                    <div class="task-color" style="background-color: #ff00ff;"></div>
-                    <div class="task-info">
-                        <h4>Task2</h4>
-                        <p>Workload: 1h</p>
-                        <p>Due in 12h</p>
-                        <p>0% done</p>
-                        <p>Collaborators: Aa, Bb</p>
+                @endforeach
+
+                <div class="section updates">
+                    <h3>Updates</h3>
+                    <div class="update-card">
+                        <div class="task-color" style="background-color: #008b8b;"></div>
+                        <div class="task-info">
+                            <h4>Project1</h4>
+                            <p>Workload: 16 days</p>
+                            <p>54% done</p>
+                            <p>Completed task: ProjectTask1</p>
+                            <p>Cc</p>
+                        </div>
+                    </div>
+                    <div class="update-card">
+                        <div class="task-color" style="background-color: #b8860b;"></div>
+                        <div class="task-info">
+                            <h4>Project2</h4>
+                            <p>Workload: 130 days</p>
+                            <p>12% done</p>
+                            <p>Updated description of ProjectTask2</p>
+                            <p>Dd</p>
+                        </div>
                     </div>
                 </div>
-                <div class="task-card">
-                    <div class="task-color" style="background-color: #ffff00;"></div>
-                    <div class="task-info">
-                        <h4>Task3</h4>
-                        <p>Workload: 15min</p>
-                        <p>Due in 1.5h</p>
-                        <p>54% done</p>
-                    </div>
-                </div>
-            </div>
-            <div class="section updates">
-                <h3>Updates</h3>
-                <div class="update-card">
-                    <div class="task-color" style="background-color: #008b8b;"></div>
-                    <div class="task-info">
-                        <h4>Project1</h4>
-                        <p>Workload: 16 days</p>
-                        <p>54% done</p>
-                        <p>Completed task: ProjectTask1</p>
-                        <p>Cc</p>
-                    </div>
-                </div>
-                <div class="update-card">
-                    <div class="task-color" style="background-color: #b8860b;"></div>
-                    <div class="task-info">
-                        <h4>Project2</h4>
-                        <p>Workload: 130 days</p>
-                        <p>12% done</p>
-                        <p>Updated description of ProjectTask2</p>
-                        <p>Dd</p>
-                    </div>
-                </div>
-            </div>
         </section>
         <section class="center-panel">
             <h3>Main project</h3>
