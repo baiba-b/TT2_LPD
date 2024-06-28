@@ -61,7 +61,6 @@
                                 <h3>{{ $connection->name }}</h3>
                                 <p>{{ $connection->email }}</p>
                             </div>
-                            <a href="{{ route('messages.show', $connection->id) }}" class="connect-button">Message</a>
                         </div>
                     @endif
                 @endforeach
@@ -81,11 +80,32 @@
                                 <h3>{{ $connection->name }}</h3>
                                 <p>{{ $connection->email }}</p>
                             </div>
-                            <a href="{{ route('messages.show', $connection->id) }}" class="connect-button">Message</a>
                         </div>
                     @endif
                 @endforeach
             @endif
+        </div>
+        <div class="section">
+            <h2>Add New Connection</h2>
+            <form action="{{ route('connections.store') }}" method="POST">
+                @csrf
+                <div class="form-group">
+                    <label for="user_id">Select User</label>
+                    <select name="connected_userID" id="connected_userID" required>
+                        @foreach($allUsers as $user)
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="type">Connection Type</label>
+                    <select name="type" id="type" required>
+                        <option value="acquaintance">Acquaintance</option>
+                        <option value="friend">Friend</option>
+                    </select>
+                </div>
+                <button type="submit" class="connect-button">Add Connection</button>
+            </form>
         </div>
     </div>
 </body>

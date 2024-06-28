@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 class MessageController extends Controller
 {
     public function show(User $user)
@@ -29,7 +30,11 @@ class MessageController extends Controller
             $query->where('sender_id', $user->id)
                 ->where('receiver_id', $currentUser->id);
         })->get();
-
+        \Log::debug('Show method called', [
+            'currentUser' => $currentUser->id,
+            'user' => $user->id,
+            'messagesCount' => $messages->count(),
+        ]);
         return view('messages.show', compact('user', 'messages'));
     }
 
@@ -47,7 +52,11 @@ class MessageController extends Controller
     $request->validate([
         'message' => 'required|string|max:1000',
     ]);
-
+    \Log::debug('Show method called', [
+        'currentUser' => $currentUser->id,
+        'user' => $user->id,
+        'messagesCount' => $messages->count(),
+    ]);
     Message::create([
         'sender_id' => $currentUser->id,
         'receiver_id' => $user->id,
